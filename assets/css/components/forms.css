@@ -1,0 +1,18 @@
+input {
+  transition: all 0.2s ease-out;
+  @apply h-12 px-4 bg-white border border-secondary-lighter rounded;
+}
+
+input:hover {
+  @apply border-secondary-light;
+}
+
+button {
+  transition: all 0.2s ease-out;
+  @apply h-12 px-4 bg-primary-normal text-white rounded ;
+}
+
+input:focus,
+button:focus {
+  @apply shadow-outline outline-none;
+}
