@@ -8,7 +8,8 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'Un proiect dedicat persoanelor cu dizabilități. Accesiblitatea e problema, nu dizabilitatea.'
       },
       { property: 'og:image', content: '/images/og-preview.png' }
     ],
@@ -20,7 +21,11 @@ export default {
   loading: { color: '#fff' },
   css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
   plugins: [{ src: '@/plugins/aos', ssr: false }],
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/tailwindcss',
+    ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }]
+  ],
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
   axios: {
     baseURL: 'https://api.educatiepentrutoti.ro'
