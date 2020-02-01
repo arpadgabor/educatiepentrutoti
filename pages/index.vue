@@ -3,6 +3,7 @@
     <braille />
     <hero />
     <follow-us />
+    <interact />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import braille from '~/components/braille'
 import hero from '~/components/sections/hero'
 import followUs from '~/components/sections/follow-us'
+import interact from '~/components/sections/interact'
 
 export default {
   components: {
     braille,
     hero,
-    followUs
+    followUs,
+    interact
   }
 }
 </script>

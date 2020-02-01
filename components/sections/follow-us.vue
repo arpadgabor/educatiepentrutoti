@@ -13,7 +13,11 @@
       </h4>
       <p>Abonează-te și te vom ține la curent pe mail!</p>
       <div class="mt-4">
-        <form @submit.prevent="subscribe" class="flex flex-col sm:flex-row">
+        <form
+          v-if="!success"
+          @submit.prevent="subscribe"
+          class="flex flex-col sm:flex-row"
+        >
           <input
             id="email"
             v-model="email"
@@ -23,6 +27,12 @@
           />
           <button type="submit">Abonează-mă!</button>
         </form>
+        <div v-if="success">
+          <p class="text-secondary-normal font-bold">Ești abonat!</p>
+        </div>
+        <div v-if="error" class="text-sm text-primary-dark">
+          <small>A apărut o eroare!</small>
+        </div>
       </div>
     </div>
   </section>
@@ -32,15 +42,19 @@
 export default {
   data() {
     return {
-      email: null
+      email: null,
+      error: false,
+      success: false
     }
   },
   methods: {
     async subscribe() {
       try {
         await this.$store.dispatch('SUBSCRIBE', this.email)
+        this.error = false
+        this.success = true
       } catch (err) {
-        console.log(err)
+        this.error = true
       }
     }
   }
