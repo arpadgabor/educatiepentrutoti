@@ -18,7 +18,7 @@ export default {
     ]
   },
   loading: { color: '#fff' },
-  css: [],
+  css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
   plugins: [{ src: '@/plugins/aos', ssr: false }],
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],

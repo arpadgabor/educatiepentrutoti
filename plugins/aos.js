@@ -1,7 +1,7 @@
 import AOS from 'aos'
-import 'aos/dist/aos.css'
+import '~/assets/css/aos.css'
 
 export default ({ app }) => {
   // eslint-disable-next-line
-  app.AOS = new AOS.init({ once: true })
+  app.AOS = new AOS.init({ once: true, disable: true })
 }
