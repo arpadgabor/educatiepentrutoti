@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "Articles"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "connection": "default",
+  "collectionName": "articles"
+}
