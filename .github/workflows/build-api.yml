@@ -26,10 +26,10 @@ jobs:
         env:
           FOLDER_PATH: api
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/api
+          IMAGE: arpadgabor/educatiepentrutoti/backend
 
       - name: Push to Registry
         run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
         env:
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/api
+          IMAGE: arpadgabor/educatiepentrutoti/backend
