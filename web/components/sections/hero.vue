@@ -1,7 +1,12 @@
 <template>
   <!-- eslint-disable prettier/prettier -->
-  <section class="container mx-auto flex flex-col justify-start pt-24">
+  <section class="container mx-auto flex flex-col justify-start pt-16">
     <div>
+      <nuxt-link to="/events" class="mb-4 flex" v-if="nrEvents > 0">
+        <span class="py-2 px-3 bg-primary-normal text-white text-xs rounded-full">
+          Avem {{ nrEvents }} {{ nrEvents > 1 ? 'evenimente' : 'eveniment'}} în viitorul apropiat!
+        </span>
+      </nuxt-link>
       <h1 class="motto">
         <span class="text-secondary-normal" data-aos="bounce-up" data-aos-duration="1000" data-aos-delay="0">
           accesibilitatea
@@ -22,7 +27,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      nrEvents: 0
+    }
+  },
+  mounted() {
+    this.nrEvents = this.$store.state.events.length
+  }
+}
 </script>
 
 <style lang="postcss" scoped>

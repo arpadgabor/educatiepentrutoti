@@ -1,0 +1,61 @@
+version: '3.1'
+
+services:
+  educatiepentrutoti-api:
+    image: strapi/strapi
+    container_name: educatiepentrutoti-api
+    restart: always
+    expose:
+      - "1337"
+    environment:
+      DATABASE_CLIENT: "postgres"
+      DATABASE_HOST: "postgres"
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: "educatiepentrutoti"
+      DATABASE_USERNAME: "educatiepentrutoti"
+      DATABASE_PASSWORD: "password"
+    volumes:
+      - /srv/educatiepentrutoti/data:/srv/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.educatiepentrutoti-api.entrypoints=http"
+      - "traefik.http.routers.educatiepentrutoti-api.rule=Host(`educatiepentrutoti.ro`)"
+      - "traefik.http.routers.educatiepentrutoti-api.middlewares=https-redirect@file"
+      - "traefik.http.routers.educatiepentrutoti-api-secure.entrypoints=https"
+      - "traefik.http.routers.educatiepentrutoti-api-secure.rule=Host(`educatiepentrutoti.ro`)"
+      - "traefik.http.routers.educatiepentrutoti-api-secure.tls=true"
+      - "traefik.http.routers.educatiepentrutoti-api-secure.tls.certresolver=http"
+      - "traefik.http.routers.educatiepentrutoti-api-secure.service=educatiepentrutoti-api"
+      - "traefik.http.services.educatiepentrutoti-api.loadbalancer.server.port=1337"
+      - "traefik.http.middlewares.educatiepentrutoti-api.stripprefix.prefixes=/api"
+      - "traefik.docker.network=proxy"
+    networks:
+      - db
+      - proxy
+
+  educatiepentrutoti-web:
+    image: docker.pkg.github.com/arpadgabor/educatiepentrutoti/web:6d54e41880d2efbcfbea959313d807746cc49435
+    container_name: educatiepentrutoti-web
+    restart: always
+    expose:
+      - "3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.educatiepentrutoti-web.entrypoints=http"
+      - "traefik.http.routers.educatiepentrutoti-web.rule=Host(`educatiepentrutoti.ro`)"
+      - "traefik.http.routers.educatiepentrutoti-web.middlewares=https-redirect@file"
+      - "traefik.http.routers.educatiepentrutoti-web-secure.entrypoints=https"
+      - "traefik.http.routers.educatiepentrutoti-web-secure.rule=Host(`educatiepentrutoti.ro`)"
+      - "traefik.http.routers.educatiepentrutoti-web-secure.tls=true"
+      - "traefik.http.routers.educatiepentrutoti-web-secure.tls.certresolver=http"
+      - "traefik.http.routers.educatiepentrutoti-web-secure.service=educatiepentrutoti-web"
+      - "traefik.http.services.educatiepentrutoti-web.loadbalancer.server.port=3000"
+      - "traefik.docker.network=proxy"
+    networks:
+      - proxy
+
+networks:
+  db:
+    external: true
+  proxy:
+    external: true

@@ -3,7 +3,7 @@
     "enabled": false
   },
   "responseTime": {
-    "enabled": false
+    "enabled": true
   },
   "poweredBy": {
     "enabled": true,

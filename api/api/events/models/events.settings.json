@@ -1,0 +1,53 @@
+{
+  "connection": "default",
+  "collectionName": "events",
+  "info": {
+    "name": "Events"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "description_meta": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "showImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "attendees": {
+      "collection": "attendees",
+      "via": "event"
+    },
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "location_url": {
+      "type": "string"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full">
-    <braille />
+  <div class="w-full h-full relative">
+    <braille class="relative" />
     <hero />
     <follow-us />
     <interact />
@@ -19,8 +19,17 @@ export default {
     hero,
     followUs,
     interact
-  }
+  },
+  transition: 'page'
 }
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.floating {
+  opacity: 0.1;
+  width: 70%;
+  position: absolute;
+  top: 4em;
+  right: 0;
+}
+</style>

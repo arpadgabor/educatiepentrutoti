@@ -1,5 +1,8 @@
 export default {
   mode: 'universal',
+  env: {
+    apiUrl: process.env.API_URL || 'http://localhost:1337'
+  },
   head: {
     title: 'Educație pentru Toți',
     meta: [
@@ -11,24 +14,34 @@ export default {
         content:
           'Un proiect dedicat persoanelor cu dizabilități. Accesiblitatea e problema, nu dizabilitatea.'
       },
-      { property: 'og:image', content: '/images/og-preview.png' }
+      { hid: 'og:image', property: 'og:image', content: '/images/og-preview.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { rel: 'preload', as: 'font', href: '/fonts/inter.css' }
     ]
   },
-  loading: { color: '#fff' },
   css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
-  plugins: [{ src: '@/plugins/aos', ssr: false }],
-  buildModules: [
-    '@nuxtjs/eslint-module',
-    '@nuxtjs/tailwindcss',
-    ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }]
+  plugins: [
+    { src: '@/plugins/aos', ssr: false },
+    { src: '@/plugins/axios', ssr: true }
   ],
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv'],
+  modules: [
+    '@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/markdownit',
+    ['vue-scrollto/nuxt', { duration: 400 }]
+  ],
+  markdownit: {
+    injected: true
+  },
+  buildModules: [
+    '@nuxtjs/tailwindcss',
+    ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
+  ],
   axios: {
-    baseURL: 'https://api.educatiepentrutoti.ro'
+    proxy: true
+  },
+  proxy: {
+    '/uploads': 'http://localhost:1337'
   },
   build: {
     extend(config, ctx) {}

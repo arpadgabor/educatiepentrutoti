@@ -3,5 +3,12 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './components/forms.css';
 
-@import './components/forms.css'
+.page-enter-active, .page-leave-active {
+  transition: all .5s;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+  transform: translateX(2em);
+}

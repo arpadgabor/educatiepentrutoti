@@ -8,6 +8,7 @@ module.exports = {
     },
     colors: {
       primary: {
+        lightest: '#FFDDDD',
         lighter: '#FFBBBB',
         light: '#EE6464',
         normal: '#E84545',
@@ -15,6 +16,7 @@ module.exports = {
         darker: '#4A1313'
       },
       secondary: {
+        lightest: '#d5d6e9',
         lighter: '#B1B3CA',
         light: '#6A6FA1',
         normal: '#2B2E4A',
@@ -33,7 +35,7 @@ module.exports = {
         '900': '#212121'
       },
       white: '#ffffff',
-      black: '#000000',
+      black: '#212121',
       transparent: 'transparent'
     },
     screens: {

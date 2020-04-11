@@ -1,5 +1,10 @@
-name: 'Build Docker Image'
-on: [push]
+name: 'Build Frontend'
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'web/**'
 
 jobs:
   build:
@@ -17,14 +22,14 @@ jobs:
           USER: arpadgabor
 
       - name: Build image
-        run: docker build . -t "$REGISTRY/$IMAGE:latest" -t "$REGISTRY/$IMAGE:$GITHUB_SHA"
+        run: docker build . -t "$REGISTRY/$IMAGE:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
         env:
+          FOLDER_PATH: web
           REGISTRY: docker.pkg.github.com
           IMAGE: arpadgabor/educatiepentrutoti/web
 
       - name: Push to Registry
-        run: docker push "$REGISTRY/$IMAGE:latest" && docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
+        run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
         env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REGISTRY: docker.pkg.github.com
           IMAGE: arpadgabor/educatiepentrutoti/web

@@ -1,8 +1,8 @@
 <template>
-  <header class="w-full bg-transparent h-20">
+  <nav class="w-full bg-transparent h-20">
     <div class="container mx-auto h-full flex flex-row justify-between py-4">
-      <div class="h-full">
-        <nuxt-link to="/" exact class="h-full">
+      <div class="h-full flex flex-row">
+        <nuxt-link to="/" class="h-full">
           <img class="h-full" src="/logo-main.svg" alt="Logo" />
         </nuxt-link>
       </div>
@@ -15,21 +15,11 @@
         </a>
       </div>
     </div>
-  </header>
+  </nav>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      items: [
-        {
-          name: 'Viziune',
-          to: '#viziune'
-        }
-      ]
-    }
-  }
 }
 </script>
 

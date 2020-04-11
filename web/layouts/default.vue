@@ -1,7 +1,9 @@
 <template>
-  <main>
+  <main class="flex flex-col h-full">
     <Header />
-    <nuxt />
+    <div class="container mx-auto h-full min-h-screen">
+      <nuxt/>
+    </div>
     <Footer />
   </main>
 </template>
@@ -14,7 +16,8 @@ export default {
   components: {
     Header,
     Footer
-  }
+  },
+  transition: 'page'
 }
 </script>
 

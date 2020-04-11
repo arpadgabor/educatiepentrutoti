@@ -1,0 +1,36 @@
+{
+  "connection": "default",
+  "collectionName": "attendees",
+  "info": {
+    "name": "Attendees"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "attended": {
+      "type": "boolean",
+      "default": false
+    },
+    "event": {
+      "via": "attendees",
+      "model": "events"
+    }
+  }
+}

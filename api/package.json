@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "educatiepentrutoti-api",
   "private": true,
   "version": "0.1.0",
   "description": "API and CMS for Educatie pentru toti",
@@ -11,20 +11,23 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "knex": "<0.20.0",
+    "pg": "^8.0.2",
+    "sqlite3": "^4.1.1",
     "strapi": "3.0.0-beta.18.7",
     "strapi-admin": "3.0.0-beta.18.7",
-    "strapi-utils": "3.0.0-beta.18.7",
-    "strapi-plugin-content-type-builder": "3.0.0-beta.18.7",
+    "strapi-connector-bookshelf": "3.0.0-beta.18.7",
     "strapi-plugin-content-manager": "3.0.0-beta.18.7",
-    "strapi-plugin-users-permissions": "3.0.0-beta.18.7",
+    "strapi-plugin-content-type-builder": "3.0.0-beta.18.7",
+    "strapi-plugin-documentation": "^3.0.0-beta.18.7",
     "strapi-plugin-email": "3.0.0-beta.18.7",
     "strapi-plugin-upload": "3.0.0-beta.18.7",
-    "strapi-connector-bookshelf": "3.0.0-beta.18.7",
-    "knex": "<0.20.0",
-    "sqlite3": "latest"
+    "strapi-plugin-users-permissions": "3.0.0-beta.18.7",
+    "strapi-utils": "3.0.0-beta.18.7"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Arpad Gabor"
   },
   "strapi": {
     "uuid": "74246f89-a0d8-4655-a517-8ecd8129503e"

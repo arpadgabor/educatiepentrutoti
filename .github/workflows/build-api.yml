@@ -1,0 +1,35 @@
+name: 'Build API'
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'api/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+
+      - name: Login to Registry
+        run: docker login $REGISTRY -u $USER -p $TOKEN
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY: docker.pkg.github.com
+          USER: arpadgabor
+
+      - name: Build image
+        run: docker build . -t "$REGISTRY/$IMAGE:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
+        env:
+          FOLDER_PATH: api
+          REGISTRY: docker.pkg.github.com
+          IMAGE: arpadgabor/educatiepentrutoti/api
+
+      - name: Push to Registry
+        run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
+        env:
+          REGISTRY: docker.pkg.github.com
+          IMAGE: arpadgabor/educatiepentrutoti/api
