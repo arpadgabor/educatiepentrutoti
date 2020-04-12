@@ -24,7 +24,6 @@ export default {
   css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
   plugins: [
     { src: '@/plugins/aos', ssr: false },
-    { src: '@/plugins/axios', ssr: true }
   ],
   modules: [
     '@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/markdownit',
@@ -41,7 +40,8 @@ export default {
     proxy: true
   },
   proxy: {
-    '/uploads': 'http://localhost:1337'
+    '/uploads': 'https://api.educatiepentrutoti.ro',
+    '/api': { target: 'https://api.educatiepentrutoti.ro', pathRewrite: { '^/api': '' }}
   },
   build: {
     extend(config, ctx) {}

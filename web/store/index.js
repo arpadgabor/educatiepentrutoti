@@ -1,5 +1,3 @@
-import api from '~/plugins/axios'
-
 export const state = () => ({
   settings: {},
   events: []
@@ -11,7 +9,8 @@ export const mutations = {
     console.log(state)
   },
   initEvents(state, events) {
-    state.events.push(...events.data)
+    if(events.length > 0)
+      state.events.push(...events)
   }
 }
 
@@ -21,15 +20,16 @@ export const actions = {
     commit('initEvents', await dispatch('getEvents'))
   },
   async subscribe({ commit }, mail) {
-    return await api.post('/subscribers', {
+    return await this.$axios.$post('/api/subscribers', {
       email: mail
     })
   },
   async getSetting({ commit }, setting) {
-    const { data } = await api.get(`/settings/?name=${setting}`)
-    commit('setSetting', data[0])
+    const { data } = await this.$axios.$get(`/api/settings/?name=${setting}`)
+    if(data)
+      commit('setSetting', data)
   },
   async getEvents({ commit }, slug = null) {
-    return await api.get(`/events${ slug ? `/?slug=${slug}` : '' }`)
+    return await this.$axios.$get(`/api/events${ slug ? `/?slug=${slug}` : '' }`)
   }
 }

@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import api from '~/plugins/axios'
 
 export default {
   props: ['eventId', 'eventSlug'],
@@ -86,7 +85,7 @@ export default {
       const { firstname, lastname, email, phone, facebook } = this.form
       this.loading = true
       try {
-        await api.post('/attendees', {
+        await this.$axios.$post('/api/attendees', {
           firstName: firstname,
           lastName: lastname,
           email: email,
