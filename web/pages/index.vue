@@ -23,7 +23,8 @@ export default {
   transition: 'page',
   async asyncData({ store, error }) {
     try {
-      let meta = await store.dispatch('getMeta', '')
+      let meta = await store.dispatch('getMeta', '/home')
+
       return {
         meta: meta[0]
       }

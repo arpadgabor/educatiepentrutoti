@@ -7,7 +7,6 @@ export const state = () => ({
 export const mutations = {
   setSetting(state, { name, value }) {
     state.settings[name] = value
-    console.log(state)
   },
   initEvents(state, events) {
     if(events.length > 0)

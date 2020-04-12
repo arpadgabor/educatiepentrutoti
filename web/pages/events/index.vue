@@ -52,7 +52,6 @@ export default {
 
         status = 'done'
       } catch (e) {
-        console.log(e)
         error({ statusCode: e.statusCode, message: e.message })
       }
     }

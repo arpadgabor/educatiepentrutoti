@@ -9,17 +9,19 @@ export default {
   components: {
     eventForm
   },
-  async asyncData({ store, params }) {
+  async asyncData({ store, params, error }) {
     let event = store.state.events.find(ev => ev.slug === params.slug)
-    console.log(event)
+
     let status = 'done'
 
     if(event === undefined) {
       try {
         event = await store.dispatch('getEvents', params.slug)
+        console.log(event)
+        if(!event)
+          return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
         status = 'done'
       } catch (e) {
-        console.log(e)
         error({ statusCode: e.statusCode, message: e.message })
       }
     }
@@ -45,7 +47,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.event)
     this.checkSignUp()
   },
   computed: {

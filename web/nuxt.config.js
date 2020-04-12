@@ -29,6 +29,7 @@ export default {
 
 
   plugins: [
+    '~/plugins/http.server',
     { src: '@/plugins/aos', ssr: false },
   ],
 
