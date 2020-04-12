@@ -85,7 +85,7 @@ export default {
       const { firstname, lastname, email, phone, facebook } = this.form
       this.loading = true
       try {
-        await this.$axios.$post('/api/attendees', {
+        await this.$axios.$post('/attendees', {
           firstName: firstname,
           lastName: lastname,
           email: email,

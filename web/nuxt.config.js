@@ -1,8 +1,7 @@
+require('dotenv').config()
+
 export default {
   mode: 'universal',
-  env: {
-    apiUrl: process.env.API_URL || 'http://localhost:1337'
-  },
   head: {
     title: 'Educație pentru Toți',
     meta: [
@@ -23,10 +22,14 @@ export default {
   },
   css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
   plugins: [
+    { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/aos', ssr: false },
   ],
   modules: [
-    '@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/markdownit',
+    '@nuxtjs/proxy',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/axios',
+    '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 400 }]
   ],
   markdownit: {
@@ -37,11 +40,11 @@ export default {
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
   axios: {
+    // baseUrl: process.env.API_URL,
     proxy: true
   },
   proxy: {
-    '/uploads': 'http://api.educatiepentrutoti.ro',
-    '/api': { target: 'http://api.educatiepentrutoti.ro', pathRewrite: { '^/api': '' }}
+    '/uploads/': process.env.API_URL,
   },
   build: {
     extend(config, ctx) {}

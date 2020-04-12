@@ -22,20 +22,20 @@ export const actions = {
     } catch (e) { console.log(e) }
   },
   async subscribe({ commit }, mail) {
-    return await this.$axios.$post('/api/subscribers', {
+    return await this.$axios.$post('/subscribers', {
       email: mail
     })
   },
   async getSetting({ commit }, setting) {
     try {
-      const { data } = await this.$axios.$get(`/api/settings/?name=${setting}`)
+      const { data } = await this.$axios.$get(`/settings/?name=${setting}`)
       if(data)
         commit('setSetting', data)
     } catch (e) { console.log(e) }
   },
   async getEvents({ commit }, slug = null) {
     try {
-      return await this.$axios.$get(`/api/events${ slug ? `/?slug=${slug}` : '' }`)
+      return await this.$axios.$get(`/events${ slug ? `/?slug=${slug}` : '' }`)
     } catch (e) { console.log(e) }
   }
 }

@@ -50,7 +50,7 @@ export default {
   methods: {
     async subscribe() {
       try {
-        await this.$store.dispatch('SUBSCRIBE', this.email)
+        await this.$store.dispatch('subscribe', this.email)
         this.error = false
         this.success = true
       } catch (err) {
