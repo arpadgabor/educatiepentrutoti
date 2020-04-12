@@ -8,6 +8,8 @@ RUN apk add git
 COPY ./web /app
 RUN npm install
 
+ENV API_URL https://api.educatiepentrutoti.ro
+
 RUN npm run build
 
 EXPOSE 3000
