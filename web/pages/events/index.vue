@@ -35,18 +35,25 @@ export default {
   components: {
     eventPreview
   },
-  async asyncData({ store }) {
-    let events = store.state.events
+  async asyncData({ store, error }) {
     let status = 'done'
+    let events = store.state.events
+    let meta
 
     if(events.length === 0) {
       try {
-        events = await store.dispatch('getEvents')
-        console.log(events)
+        let data = await Promise.all([
+          store.dispatch('getEvents'),
+          store.dispatch('getMeta', '/events')
+        ])
+
+        events = data[0]
+        meta = data[1][0]
+
         status = 'done'
       } catch (e) {
         console.log(e)
-        status = 'error'
+        error({ statusCode: e.statusCode, message: e.message })
       }
     }
 
@@ -56,9 +63,19 @@ export default {
 
     return {
       events: events,
-      status: status
+      status: status,
+      meta: meta
     }
-  }
+  },
+  head () {
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.meta.image}` }
+      ]
+    }
+  },
 }
 </script>
 

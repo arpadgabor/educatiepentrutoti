@@ -47,5 +47,8 @@ export const actions = {
   },
   async countEvents() {
     return await this.$http.$get(`events/count`)
+  },
+  async getMeta(_, path) {
+    return await this.$http.$get(`metas?path=${path}`)
   }
 }

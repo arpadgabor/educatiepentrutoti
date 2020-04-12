@@ -20,7 +20,27 @@ export default {
     followUs,
     interact
   },
-  transition: 'page'
+  transition: 'page',
+  async asyncData({ store, error }) {
+    try {
+      let meta = await store.dispatch('getMeta', '')
+      return {
+        meta: meta[0]
+      }
+    } catch(e) {
+      console.log(e)
+      error({ statusCode: e.statusCode, message: e.message })
+    }
+  },
+  head () {
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.meta.image}` }
+      ]
+    }
+  },
 }
 </script>
 

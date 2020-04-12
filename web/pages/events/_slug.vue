@@ -20,7 +20,7 @@ export default {
         status = 'done'
       } catch (e) {
         console.log(e)
-        status = 'error'
+        error({ statusCode: e.statusCode, message: e.message })
       }
     }
 
