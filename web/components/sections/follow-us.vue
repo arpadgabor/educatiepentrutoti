@@ -7,7 +7,7 @@
     data-aos-once="true"
     data-aos-anchor-placement="bottom-bottom"
   >
-    <div class="p-4 bg-white rounded shadow-md w-auto">
+    <div class="p-4 bg-white rounded shadow-md w-auto" v-if="!alreadySubscribed">
       <h4 class="font-bold text-secondary-normal text-xl">
         Dorești să ne urmărești progresul?
       </h4>
@@ -42,15 +42,22 @@
 export default {
   data() {
     return {
+      alreadySubscribed: false,
       email: null,
       error: false,
       success: false
+    }
+  },
+  mounted() {
+    if(window.localStorage.getItem('subscribed') === 'true') {
+      this.alreadySubscribed = true
     }
   },
   methods: {
     async subscribe() {
       try {
         await this.$store.dispatch('subscribe', this.email)
+        window.localStorage.setItem('subscribed', true)
         this.error = false
         this.success = true
       } catch (err) {

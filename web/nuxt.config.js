@@ -26,13 +26,12 @@ export default {
     '@/assets/css/tailwind.css'
   ],
   plugins: [
-    '@/plugins/axios',
     { src: '@/plugins/aos', ssr: false },
   ],
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
-    '@nuxtjs/axios',
+    '@nuxt/http',
     '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 400 }]
   ],
@@ -43,11 +42,18 @@ export default {
     '@nuxtjs/tailwindcss',
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
-  axios: {
-    proxy: true
+  http: {
+    proxy: true,
+    prefix: '/api'
   },
   proxy: {
-    '/uploads/': process.env.API_URL,
+    '/api/': {
+      target: process.env.API_URL,
+      pathRewrite: { '^/api/': '' }
+    },
+    '/uploads/': {
+      target: process.env.API_URL,
+    }
   },
   build: {
     extend(config, ctx) {}
