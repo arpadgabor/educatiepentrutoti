@@ -4,7 +4,7 @@
     <div>
       <nuxt-link to="/events" class="mb-4 flex" v-if="nrEvents > 0">
         <span class="py-2 px-3 bg-primary-normal text-white text-xs rounded-full">
-          Avem {{ nrEvents }} {{ nrEvents > 1 ? 'evenimente' : 'eveniment'}} în viitorul apropiat!
+          Te așteptăm la evenimentele noastre! 👈
         </span>
       </nuxt-link>
       <h1 class="motto">

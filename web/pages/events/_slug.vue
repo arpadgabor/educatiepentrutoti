@@ -48,6 +48,11 @@ export default {
     console.log(this.event)
     this.checkSignUp()
   },
+  computed: {
+    isInFuture() {
+      return new Date(this.event.date) > new Date()
+    }
+  },
   methods: {
     niceifyDate(date) {
       return format(new Date(date), 'd MMMM, HH:mm', { locale: ro })
@@ -65,6 +70,9 @@ export default {
 <template>
   <article v-if="status === 'done'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
     <header class="w-full text-center my-8">
+      <div class="alert error text-left mb-4" v-if="!isInFuture">
+        <p>Evenimentul s-a încheiat.</p>
+      </div>
       <h1 class="font-bold text-4xl text-secondary-dark">
         {{ event.name }}
       </h1>
@@ -87,14 +95,14 @@ export default {
               {{ niceifyDate(event.date) }}
             </p>
           </div>
-          <div>
+          <div v-if="isInFuture">
             <a class="font-bold text-primary-normal" href="#form" v-scroll-to="'#form'" v-if="!alreadySignedUp">Înscrie-te</a>
             <span class="font-bold text-primary-normal" v-else>Ești înscris!</span>
           </div>
         </div>
       </section>
       <section v-html="$md.render(event.description)" id="html-content"  class="mb-8"></section>
-      <section class="w-full mb-8">
+      <section class="w-full mb-8" v-if="isInFuture">
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
     </main>
