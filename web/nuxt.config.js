@@ -26,8 +26,7 @@ export default {
     '@/assets/css/tailwind.css'
   ],
   plugins: [
-    '~/plugins/axios',
-    { src: '@/plugins/axios', ssr: true },
+    '@/plugins/axios',
     { src: '@/plugins/aos', ssr: false },
   ],
   modules: [
