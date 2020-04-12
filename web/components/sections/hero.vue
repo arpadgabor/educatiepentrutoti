@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable prettier/prettier -->
-  <section class="container mx-auto flex flex-col justify-start pt-16">
+  <section class="w-full mx-auto flex flex-col justify-start pt-16 z-10">
     <div>
       <nuxt-link to="/events" class="mb-4 flex" v-if="nrEvents > 0">
         <span class="py-2 px-3 bg-primary-normal text-white text-xs rounded-full">

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container mx-auto py-16 flex z-10 relative"
+    class="w-full mx-auto py-16 flex z-10 relative"
     data-aos="bounce-up"
     data-aos-duration="1000"
     data-aos-delay="800"

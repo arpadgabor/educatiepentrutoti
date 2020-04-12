@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto pb-20">
+  <section class="w-full mx-auto pb-20">
     <div class="flex flex-col md:flex-row">
       <a class="social-link facebook" href="http://bit.ly/pagina-ept-ro">
         <!-- eslint-disable -->

@@ -20,7 +20,10 @@ export default {
       { rel: 'preload', as: 'font', href: '/fonts/inter.css' }
     ]
   },
-  css: ['aos/dist/aos.css', '@/assets/css/aos.css'],
+  css: [
+    'aos/dist/aos.css', '@/assets/css/aos.css',
+    '@/assets/css/tailwind.css'
+  ],
   plugins: [
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/aos', ssr: false },
