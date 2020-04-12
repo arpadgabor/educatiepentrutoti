@@ -48,6 +48,7 @@ export default {
   },
   proxy: {
     '/uploads/': process.env.API_URL,
+    '/api/': { target: process.env.API_URL, pathRewrite: { '^/api/': '' }
   },
   build: {
     extend(config, ctx) {}
