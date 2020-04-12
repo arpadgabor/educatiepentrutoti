@@ -25,9 +25,13 @@ export default {
     '@/assets/css/aos.css',
     '@/assets/css/tailwind.css'
   ],
+
+
   plugins: [
     { src: '@/plugins/aos', ssr: false },
   ],
+
+
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
@@ -35,13 +39,12 @@ export default {
     '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 400 }]
   ],
-  markdownit: {
-    injected: true
-  },
   buildModules: [
     '@nuxtjs/tailwindcss',
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
+
+
   http: {
     proxy: true,
     prefix: '/api'
@@ -55,6 +58,16 @@ export default {
       target: process.env.API_URL,
     }
   },
+
+
+  markdownit: {
+    injected: true
+  },
+  tailwindcss: {
+    purgeCSSInDev: false,
+  },
+
+
   build: {
     extend(config, ctx) {}
   }

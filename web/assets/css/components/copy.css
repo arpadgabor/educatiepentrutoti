@@ -1,0 +1,58 @@
+/* copy = text */
+
+h1, h2, h3, h4 {
+  @apply font-bold;
+}
+
+#html-content {
+  @apply text-gray-900;
+}
+
+#html-content p,
+#html-content h1,
+#html-content h2,
+#html-content h3,
+#html-content h4,
+#html-content h5,
+#html-content h6,
+#html-content ul,
+#html-content li {
+  @apply mb-4;
+}
+
+#html-content h1 {
+  @apply text-2xl;
+}
+#html-content h2 {
+  @apply text-xl;
+}
+#html-content h3 {
+  @apply text-lg;
+}
+#html-content h4 {
+  @apply uppercase;
+}
+
+#html-content ul {
+  @apply list-disc ml-2;
+}
+
+#html-content ol {
+  @apply list-decimal ml-2;
+}
+
+#html-content li {
+  @apply ml-2;
+}
+
+#html-content a {
+  @apply text-primary-normal transition-all duration-200 ease-in-out;
+}
+
+#html-content a:hover {
+  @apply bg-primary-lightest;
+}
+
+#html-content code {
+  @apply bg-secondary-lightest text-secondary-dark font-bold px-1 font-inter;
+}
