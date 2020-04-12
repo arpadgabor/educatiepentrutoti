@@ -16,6 +16,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }) {
+    this.$axios.setBaseURL(process.env.API_URL)
     try {
       await dispatch('getSetting', 'showSubscribe')
       commit('initEvents', await dispatch('getEvents'))
