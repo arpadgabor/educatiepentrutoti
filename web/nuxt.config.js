@@ -21,7 +21,8 @@ export default {
     ]
   },
   css: [
-    'aos/dist/aos.css', '@/assets/css/aos.css',
+    'aos/dist/aos.css',
+    '@/assets/css/aos.css',
     '@/assets/css/tailwind.css'
   ],
   plugins: [
@@ -43,7 +44,6 @@ export default {
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
   axios: {
-    // baseUrl: process.env.API_URL,
     proxy: true
   },
   proxy: {
