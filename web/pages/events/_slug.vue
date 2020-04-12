@@ -12,7 +12,7 @@ export default {
   async asyncData({ store, params }) {
     let event = store.state.events.find(ev => ev.slug === params.slug)
     console.log(event)
-    let status
+    let status = 'done'
 
     if(event === undefined) {
       try {
@@ -25,7 +25,7 @@ export default {
     }
 
     return {
-      event: event[0],
+      event: event,
       status: status
     }
   },

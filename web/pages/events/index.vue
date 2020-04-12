@@ -31,7 +31,7 @@ export default {
   },
   async asyncData({ store }) {
     let events = store.state.events
-    let status = 'loading'
+    let status = 'done'
 
     if(events.length === 0) {
       try {
@@ -45,7 +45,6 @@ export default {
     }
 
     if(events.length === 0 && status === 'done') {
-      console.log(events.length)
       status = 'empty'
     }
 

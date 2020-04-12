@@ -41,7 +41,9 @@ export const actions = {
     return await this.$http.$get(`settings/?name=${setting}`)
   },
   async getEvents({ commit }, slug = null) {
-    return await this.$http.$get(`events${ slug ? `/?slug=${slug}` : '' }`)
+    let events = await this.$http.$get(`events${ slug ? `/?slug=${slug}` : '' }`)
+    commit('initEvents', events)
+    return (slug === null ? events : events[0])
   },
   async countEvents() {
     return await this.$http.$get(`events/count`)
