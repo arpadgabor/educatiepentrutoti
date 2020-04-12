@@ -16,8 +16,10 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }) {
-    await dispatch('getSetting', 'showSubscribe')
-    commit('initEvents', await dispatch('getEvents'))
+    try {
+      await dispatch('getSetting', 'showSubscribe')
+      commit('initEvents', await dispatch('getEvents'))
+    } catch (e) { console.log(e) }
   },
   async subscribe({ commit }, mail) {
     return await this.$axios.$post('/api/subscribers', {
@@ -25,11 +27,15 @@ export const actions = {
     })
   },
   async getSetting({ commit }, setting) {
-    const { data } = await this.$axios.$get(`/api/settings/?name=${setting}`)
-    if(data)
-      commit('setSetting', data)
+    try {
+      const { data } = await this.$axios.$get(`/api/settings/?name=${setting}`)
+      if(data)
+        commit('setSetting', data)
+    } catch (e) { console.log(e) }
   },
   async getEvents({ commit }, slug = null) {
-    return await this.$axios.$get(`/api/events${ slug ? `/?slug=${slug}` : '' }`)
+    try {
+      return await this.$axios.$get(`/api/events${ slug ? `/?slug=${slug}` : '' }`)
+    } catch (e) { console.log(e) }
   }
 }

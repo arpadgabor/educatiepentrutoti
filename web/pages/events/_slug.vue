@@ -12,10 +12,12 @@ export default {
   async asyncData({ store, params }) {
     const findEventInStore = store.state.events.find(ev => ev.slug === params.slug)
     if(!findEventInStore) {
-      const event = store.dispatch('getEvents', route.params.slug)
-      return {
-        event: event
-      }
+      try {
+        const event = await store.dispatch('getEvents', route.params.slug)
+        return {
+          event: event
+        }
+      } catch (e) { console.log(e) }
     } else {
       return {
         event: findEventInStore

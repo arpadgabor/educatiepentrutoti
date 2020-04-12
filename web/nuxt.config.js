@@ -40,8 +40,8 @@ export default {
     proxy: true
   },
   proxy: {
-    '/uploads': 'https://api.educatiepentrutoti.ro',
-    '/api': { target: 'https://api.educatiepentrutoti.ro', pathRewrite: { '^/api': '' }}
+    '/uploads': 'http://api.educatiepentrutoti.ro',
+    '/api': { target: 'http://api.educatiepentrutoti.ro', pathRewrite: { '^/api': '' }}
   },
   build: {
     extend(config, ctx) {}
