@@ -1,12 +1,24 @@
 <template>
-  <main class="w-full">
+  <main class="w-full" v-if="status === 'done'">
     <h1 class="font-bold text-4xl py-8 text-primary-normal leading-tight">Evenimente viitoare</h1>
-    <section v-if="$store.state.events.length > 0" class="grid">
-      <event-preview v-for="event of $store.state.events" :key="event.slug" :event="event" class="hover-move-up"/>
+    <section v-if="events" class="grid">
+      <event-preview v-for="event of events" :key="event.slug" :event="event" class="hover-move-up"/>
     </section>
     <section v-else>
       <h4 class="font-bold text-gray-800 text-center py-12">Nu avem evenimente în viitorul apropiat.</h4>
     </section>
+  </main>
+  <main v-else-if="status === 'empty'" class="w-full text-center">
+    <h1 class="font-bold text-gray-700">
+      Nu avem evenimente încă.
+    </h1>
+  </main>
+  <main v-else-if="status === 'error'" class="w-full text-center">
+    <div class="alert error">
+      <p>
+        A apărut o eroare și nu s-au putut încărca evenimentele. Încearcă din nou.
+      </p>
+    </div>
   </main>
 </template>
 
@@ -17,9 +29,29 @@ export default {
   components: {
     eventPreview
   },
-  data() {
-    return {
+  async asyncData({ store }) {
+    let events = store.state.events
+    let status = 'loading'
 
+    if(events.length === 0) {
+      try {
+        events = await store.dispatch('getEvents')
+        console.log(events)
+        status = 'done'
+      } catch (e) {
+        console.log(e)
+        status = 'error'
+      }
+    }
+
+    if(events.length === 0 && status === 'done') {
+      console.log(events.length)
+      status = 'empty'
+    }
+
+    return {
+      events: events,
+      status: status
     }
   }
 }

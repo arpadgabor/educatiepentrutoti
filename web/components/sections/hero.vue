@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    this.nrEvents = this.$store.state.events.length
+    this.nrEvents = this.$store.state.eventsCount
   }
 }
 </script>

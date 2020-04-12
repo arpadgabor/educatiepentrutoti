@@ -9,6 +9,7 @@
 @import './components/forms.css';
 @import './components/transitions.css';
 @import './components/copy.css';
+@import './components/alerts.css';
 
 /* purgecss end ignore */
 

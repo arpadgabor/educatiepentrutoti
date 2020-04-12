@@ -10,24 +10,29 @@ export default {
     eventForm
   },
   async asyncData({ store, params }) {
-    const findEventInStore = store.state.events.find(ev => ev.slug === params.slug)
-    if(!findEventInStore) {
+    let event = store.state.events.find(ev => ev.slug === params.slug)
+    console.log(event)
+    let status
+
+    if(event === undefined) {
       try {
-        const event = await store.dispatch('getEvents', route.params.slug)
-        return {
-          event: event
-        }
-      } catch (e) { console.log(e) }
-    } else {
-      return {
-        event: findEventInStore
+        event = await store.dispatch('getEvents', params.slug)
+        status = 'done'
+      } catch (e) {
+        console.log(e)
+        status = 'error'
       }
+    }
+
+    return {
+      event: event[0],
+      status: status
     }
   },
   data() {
     return {
-      event: null,
-      alreadySignedUp: false
+      alreadySignedUp: false,
+      status: 'loading'
     }
   },
   head () {
@@ -35,20 +40,17 @@ export default {
       title: this.event.name,
       meta: [
         { hid: 'description', name: 'description', content: this.event.description_meta },
-        { hid: 'og:image', property: 'og:image', content: this.event.image.url }
+        { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.event.image.url}` }
       ]
     }
   },
   mounted() {
+    console.log(this.event)
     this.checkSignUp()
   },
   methods: {
     niceifyDate(date) {
       return format(new Date(date), 'd MMMM, HH:mm', { locale: ro })
-    },
-    getEventFromStore() {
-      this.event = this.$store.state.events.find(ev => ev.slug === this.$route.params.slug)
-      return this.event
     },
     checkSignUp() {
       const value = window.localStorage.getItem(this.event.slug)
@@ -61,7 +63,7 @@ export default {
 </script>
 
 <template>
-  <article v-if="event" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
+  <article v-if="status === 'done'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
     <header class="w-full text-center my-8">
       <h1 class="font-bold text-4xl text-secondary-dark">
         {{ event.name }}
@@ -78,7 +80,7 @@ export default {
       <section name="Data și ora eveniment" class="mb-8">
         <div class="bg-gray-100 rounded w-full p-4 flex flex-row justify-between items-center">
           <div>
-            <small class="opacity-75">
+            <small class="opacity-75" v-if="event.location">
               <a :href="event.location_url">{{ event.location }}</a>
             </small>
             <p class="text-secondary-normal font-bold">
@@ -96,6 +98,16 @@ export default {
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
     </main>
+  </article>
+  <article v-else-if="status === 'loading'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
+    <p>Se încarcă</p>
+  </article>
+  <article v-else-if="status === 'error'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
+    <div class="alert error">
+      <p>
+        A apărut o eroare la încărcare articolului.
+      </p>
+    </div>
   </article>
 </template>
 

@@ -1,6 +1,7 @@
 export const state = () => ({
   settings: {},
-  events: []
+  events: [],
+  eventsCount: 0
 })
 
 export const mutations = {
@@ -11,15 +12,25 @@ export const mutations = {
   initEvents(state, events) {
     if(events.length > 0)
       state.events.push(...events)
+  },
+  setEventCount(state, count) {
+    state.eventsCount = count
   }
 }
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }) {
+  async nuxtServerInit({ commit, dispatch }, { error }) {
     try {
-      await dispatch('getSetting', 'showSubscribe')
-      commit('initEvents', await dispatch('getEvents'))
-    } catch (e) { console.log(e) }
+      const data = await Promise.all([
+        dispatch('getSetting', 'showSubscribe'),
+        dispatch('countEvents')
+      ])
+
+      if(data[0]) commit('setSetting', data[0][0])
+      commit('setEventCount', data[1])
+    } catch (e) {
+      error(500, 'Eroare de server')
+    }
   },
   async subscribe({ commit }, mail) {
     return await this.$http.post('subscribers', {
@@ -27,15 +38,12 @@ export const actions = {
     })
   },
   async getSetting({ commit }, setting) {
-    try {
-      const { data } = await this.$http.$get(`settings/?name=${setting}`)
-      if(data)
-        commit('setSetting', data)
-    } catch (e) { console.log(e) }
+    return await this.$http.$get(`settings/?name=${setting}`)
   },
   async getEvents({ commit }, slug = null) {
-    try {
-      return await this.$http.$get(`events${ slug ? `/?slug=${slug}` : '' }`)
-    } catch (e) { console.log(e) }
+    return await this.$http.$get(`events${ slug ? `/?slug=${slug}` : '' }`)
+  },
+  async countEvents() {
+    return await this.$http.$get(`events/count`)
   }
 }

@@ -1,0 +1,7 @@
+{
+  "css.lint.duplicateProperties": "warning",
+  "css.lint.float": "error",
+  "prettier.semi": false,
+  "css.completion.completePropertyWithSemicolon": false,
+  "css.validate": false
+}

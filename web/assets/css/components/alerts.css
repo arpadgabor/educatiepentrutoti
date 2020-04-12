@@ -1,0 +1,7 @@
+.alert {
+  @apply p-4 rounded bg-transparent border font-bold text-gray-800;
+}
+
+.alert.error {
+  @apply bg-primary-lightest border-primary-light text-primary-normal;
+}
