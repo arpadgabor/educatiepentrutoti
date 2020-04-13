@@ -36,7 +36,7 @@ export default {
 
   oneSignal: {
     init: {
-      appId: '5a02fd69-5d79-4587-8dd0-652b3a913d21',
+      appId: process.env.ONESIGNAL_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
         disable: true

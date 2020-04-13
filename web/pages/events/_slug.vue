@@ -108,7 +108,7 @@ export default {
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
       <section class="w-full mb-8">
-        <div class='onesignal-customlink-container'></div>
+        <div class='onesignal-customlink-container w-full p-4 bg-gray-100 rounded'></div>
       </section>
     </main>
   </article>
@@ -124,5 +124,8 @@ export default {
   </article>
 </template>
 
-<style>
+<style lang="postcss">
+.onesignal-customlink-container {
+  @apply w-full
+}
 </style>

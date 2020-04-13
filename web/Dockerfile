@@ -9,6 +9,7 @@ COPY ./web /app
 RUN npm install
 
 ENV API_URL https://api.educatiepentrutoti.ro
+ENV ONESIGNAL_ID 5a02fd69-5d79-4587-8dd0-652b3a913d21
 
 RUN npm run build
 

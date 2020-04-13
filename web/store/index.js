@@ -44,6 +44,10 @@ export const actions = {
     commit('initEvents', events)
     return (slug === null ? events : events[0])
   },
+  async getPages({ commit }, slug = null) {
+    let pages = await this.$http.$get(`pages${ slug ? `/?slug=${slug}` : '' }`)
+    return (slug === null ? pages : pages[0])
+  },
   async countEvents() {
     return await this.$http.$get(`events/count`)
   },

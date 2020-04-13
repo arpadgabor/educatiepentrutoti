@@ -50,6 +50,16 @@
       class="mb-2"
     />
     <button type="submit" class="w-full m-0" :disabled="loading">Înscrie-mă!</button>
+    <p class="text-sm text-gray-700 mt-4 leading-tight">
+      <small>
+        Datele cu caracter personal sunt folosite exclusiv pentru contactarea
+        participanților. Completând formularul suntețu de acord cu contactarea
+        dumneavoastră în scopul proiectului. Puteți citi mai multe pe pagina
+        <nuxt-link to="/pages/date-personale" class="text-primary-dark bg-primary-lightest px-1">
+          despre datele cu caracter personal
+        </nuxt-link>.
+      </small>
+    </p>
   </form>
   <div v-else-if="success" class="flex flex-col p-4 bg-white shadow-md rounded">
     <h5 class="font-bold text-primary-light mb-4">Ești înscris!</h5>
