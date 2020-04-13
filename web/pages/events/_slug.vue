@@ -17,7 +17,6 @@ export default {
     if(event === undefined) {
       try {
         event = await store.dispatch('getEvents', params.slug)
-        console.log(event)
         if(!event)
           return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
         status = 'done'
@@ -38,12 +37,14 @@ export default {
     }
   },
   head () {
-    return {
-      title: this.event.name,
-      meta: [
-        { hid: 'description', name: 'description', content: this.event.description_meta },
-        { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.event.image.url}` }
-      ]
+    if(this.event) {
+      return {
+        title: this.event.name,
+        meta: [
+          { hid: 'description', name: 'description', content: this.event.description_meta },
+          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.event.image.url}` }
+        ]
+      }
     }
   },
   mounted() {

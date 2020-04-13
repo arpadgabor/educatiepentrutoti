@@ -34,6 +34,17 @@ export default {
   ],
 
 
+  oneSignal: {
+    init: {
+      appId: '5a02fd69-5d79-4587-8dd0-652b3a913d21',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: true
+      }
+    }
+  },
+
+
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
@@ -60,16 +71,6 @@ export default {
     },
     '/uploads/': {
       target: process.env.API_URL,
-    }
-  },
-
-  oneSignal: {
-    init: {
-      appId: '5a02fd69-5d79-4587-8dd0-652b3a913d21',
-      allowLocalhostAsSecureOrigin: false,
-      welcomeNotification: {
-        disable: false
-      }
     }
   },
 

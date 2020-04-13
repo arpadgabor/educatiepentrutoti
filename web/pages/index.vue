@@ -34,12 +34,14 @@ export default {
     }
   },
   head () {
-    return {
-      title: this.meta.title,
-      meta: [
-        { hid: 'description', name: 'description', content: this.meta.description },
-        { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.meta.image.url}` }
-      ]
+    if(this.meta) {
+      return {
+        title: this.meta.title,
+        meta: [
+          { hid: 'description', name: 'description', content: this.meta.description },
+          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.meta.image.url}` }
+        ]
+      }
     }
   },
 }
