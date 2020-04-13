@@ -46,6 +46,7 @@ export default {
 
 
   modules: [
+    'cookie-universal-nuxt',
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
     '@nuxt/http',
@@ -75,7 +76,9 @@ export default {
   },
 
   markdownit: {
-    injected: true
+    injected: true,
+    linkify: false,
+    typographer: true
   },
   tailwindcss: {
     purgeCSSInDev: false,

@@ -42,7 +42,7 @@ h1, h2, h3, h4 {
 }
 
 #html-content li {
-  @apply ml-2;
+  @apply ml-2 mb-0;
 }
 
 #html-content a {

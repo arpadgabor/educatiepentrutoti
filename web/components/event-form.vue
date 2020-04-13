@@ -6,60 +6,67 @@
     v-if="!alreadySignedUp && !success"
   >
     <h4 class="text-xl mb-4">Formular înscriere</h4>
+    <label for="firstname">Prenume *</label>
     <input
       id="firstname"
       name="Prenume"
       v-model="form.firstname"
       type="text"
-      placeholder="Prenumele tău *"
+      placeholder="Daniel"
       class="mb-2"
       required
     />
+    <label for="lastname">Numele de familie *</label>
     <input
       id="lastname"
       name="Nume de familie"
       v-model="form.lastname"
       type="text"
-      placeholder="Numele de familie *"
+      placeholder="Gheorghe"
       class="mb-2"
       required
     />
+    <label for="email">Email *</label>
     <input
       id="email"
       name="E-mail de contact"
       v-model="form.email"
       type="email"
-      placeholder="E-mail-ul tău de contact *"
+      placeholder="gheorghe.daniel@gmail.com"
       class="mb-2"
       required
     />
+    <label for="phone">Număr de telefon *</label>
     <input
       id="phone"
-      name="Număr de telefon, opțional"
+      name="Număr de telefon"
       v-model="form.phone"
       type="text"
-      placeholder="Număr de telefon (opțional)"
+      placeholder="0712 345 678"
       class="mb-2"
+      required
     />
+    <label for="facebook">Profil Facebook (opțional)</label>
     <input
       id="facebook"
       name="Link profil facebook, opțional"
       v-model="form.facebook"
       type="text"
-      placeholder="Link profil Facebook (opțional)"
+      placeholder="https://fb.com/gheorghe.daniel"
       class="mb-2"
     />
-    <button type="submit" class="w-full m-0" :disabled="loading">Înscrie-mă!</button>
-    <p class="text-sm text-gray-700 mt-4 leading-tight">
+    <p class="text-gray-700 mb-4 leading-none">
       <small>
-        Datele cu caracter personal sunt folosite exclusiv pentru contactarea
-        participanților. Completând formularul suntețu de acord cu contactarea
-        dumneavoastră în scopul proiectului. Puteți citi mai multe pe pagina
+        Apăsând butonul „Înscrie-mă”, sunteți de acord să vă folosim datele personale
+        completate pentru a vă putea contacta în scopul proiectului Educație pentru toți.
+        Datele dumneavoastră vor fi șterse după eveniment dacă nu doriți să mai primiți
+        mail-uri pentru viitoare evenimente. Puteți citi mai multe pe pagina
         <nuxt-link to="/pages/date-personale" class="text-primary-dark bg-primary-lightest px-1">
           despre datele cu caracter personal
         </nuxt-link>.
       </small>
     </p>
+    <button type="submit" class="w-full m-0" :disabled="loading">Înscrie-mă!</button>
   </form>
   <div v-else-if="success" class="flex flex-col p-4 bg-white shadow-md rounded">
     <h5 class="font-bold text-primary-light mb-4">Ești înscris!</h5>

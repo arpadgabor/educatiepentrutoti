@@ -1,21 +1,24 @@
 <template>
   <main class="flex flex-col h-full">
-    <Header />
+    <Navigation />
     <div class="container mx-auto h-full min-h-screen">
       <nuxt/>
     </div>
+    <CookieBar />
     <Footer />
   </main>
 </template>
 
 <script>
-import Header from '~/components/header'
+import Navigation from '~/components/header'
 import Footer from '~/components/footer'
+import CookieBar from '~/components/cookies'
 
 export default {
   components: {
-    Header,
-    Footer
+    Navigation,
+    Footer,
+    CookieBar
   },
   transition: 'page'
 }
