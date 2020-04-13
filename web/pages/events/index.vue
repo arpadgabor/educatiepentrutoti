@@ -47,10 +47,10 @@ export default {
           store.dispatch('getMeta', '/events')
         ])
 
-        consol.log(data[1])
-
         events = data[0]
-        meta = data[1]
+        meta = data[1][0]
+
+        console.log(data)
 
         status = 'done'
       } catch (e) {
@@ -63,9 +63,9 @@ export default {
     }
 
     return {
-      events,
-      status,
-      meta
+      events: events,
+      status: status,
+      meta: meta
     }
   },
   head () {
