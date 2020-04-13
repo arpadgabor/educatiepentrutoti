@@ -1,7 +1,7 @@
 <template>
   <section class="w-full mx-auto pb-20">
     <div class="flex flex-col md:flex-row">
-      <a class="social-link facebook" href="http://bit.ly/pagina-ept-ro">
+      <nuxt-link class="social-link facebook" to="/@/facebook">
         <!-- eslint-disable -->
         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path fill="#ffffff" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
@@ -9,10 +9,10 @@
         <span class="ml-4">
           Urmărește-ne pe Facebook!
         </span>
-      </a>
-      <a
+      </nuxt-link>
+      <nuxt-link
         class="social-link community"
-        href="http://bit.ly/comunitate-ept-ro"
+        to="/@/comunitate"
       >
         <!-- eslint-disable -->
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
@@ -21,10 +21,10 @@
         <span class="ml-4">
           Intră în comunitate!
         </span>
-      </a>
-      <a
+      </nuxt-link>
+      <nuxt-link
         class="social-link volunteer"
-        href="http://bit.ly/voluntari-ept-ro"
+        to="/@/voluntari"
       >
         <!-- eslint-disable -->
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@
         <span class="ml-4">
           Fii voluntar!
         </span>
-      </a>
+      </nuxt-link>
     </div>
   </section>
 </template>

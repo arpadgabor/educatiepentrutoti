@@ -53,5 +53,13 @@ export const actions = {
   },
   async getMeta(_, path) {
     return await this.$http.$get(`metas?path=${path}`)
+  },
+  async getRedirect(_, path) {
+    return await this.$http.$get(`redirects?path=${path}`)
+  },
+  async incrementRedirect(_, { id, inc }) {
+    return await this.$http.$put(`redirects/${id}`, {
+      views: inc
+    })
   }
 }

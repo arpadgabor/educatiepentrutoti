@@ -7,9 +7,9 @@
         </nuxt-link>
       </div>
       <div class="h-full flex items-center">
-        <a href="https://facebook.com/educatiepentrutoti.ro" class="mr-4">
+        <nuxt-link to="/@/facebook" class="mr-4">
           <img src="/icons/fb.svg" alt="Facebook" />
-        </a>
+        </nuxt-link>
         <a href="mailto:alexandru.luca@ligaac.ro">
           <img src="/icons/email.svg" alt="Scrie-ne pe mail" />
         </a>

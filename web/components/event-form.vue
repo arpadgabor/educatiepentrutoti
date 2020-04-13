@@ -108,7 +108,7 @@ export default {
           email: email,
           phone: phone,
           facebook: facebook,
-          event: this.eventId
+          event: [ `${this.eventId}` ]
         })
         window.localStorage.setItem('attendee', `${firstname}|${lastname}|${email}`)
         window.localStorage.setItem(this.eventSlug, true)

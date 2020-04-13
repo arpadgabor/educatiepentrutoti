@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "redirects",
+  "info": {
+    "name": "redirects"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "path": {
+      "type": "string",
+      "required": true
+    },
+    "destination": {
+      "type": "string"
+    },
+    "views": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
