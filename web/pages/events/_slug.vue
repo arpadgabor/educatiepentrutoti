@@ -106,6 +106,9 @@ export default {
       <section class="w-full mb-8" v-if="isInFuture">
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
+      <section class="w-full mb-8">
+        <div class='onesignal-customlink-container'></div>
+      </section>
     </main>
   </article>
   <article v-else-if="status === 'loading'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">

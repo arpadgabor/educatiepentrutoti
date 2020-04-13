@@ -38,6 +38,8 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
     '@nuxt/http',
+    '@nuxtjs/onesignal',
+    '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 400 }]
   ],
@@ -61,6 +63,15 @@ export default {
     }
   },
 
+  oneSignal: {
+    init: {
+      appId: '5a02fd69-5d79-4587-8dd0-652b3a913d21',
+      allowLocalhostAsSecureOrigin: false,
+      welcomeNotification: {
+        disable: false
+      }
+    }
+  },
 
   markdownit: {
     injected: true

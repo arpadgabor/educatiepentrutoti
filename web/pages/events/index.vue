@@ -47,8 +47,10 @@ export default {
           store.dispatch('getMeta', '/events')
         ])
 
+        consol.log(data[1])
+
         events = data[0]
-        meta = data[1][0]
+        meta = data[1]
 
         status = 'done'
       } catch (e) {
@@ -64,6 +66,15 @@ export default {
       events: events,
       status: status,
       meta: meta
+    }
+  },
+  data() {
+    return {
+      meta: {
+        title: '',
+        description: '',
+        image: { url: ''}
+      }
     }
   },
   head () {
