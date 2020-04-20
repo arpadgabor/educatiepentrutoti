@@ -67,6 +67,9 @@
       </small>
     </p>
     <button type="submit" class="w-full m-0" :disabled="loading">Înscrie-mă!</button>
+    <div class="alert error" v-if="error">
+      A apărut o eroare, dacă aceasta se repetă, trimite-ne un mesaj pe Facebook și vom reveni în cel mai scurt timp.
+    </div>
   </form>
   <div v-else-if="success" class="flex flex-col p-4 bg-white shadow-md rounded">
     <h5 class="font-bold text-primary-light mb-4">Ești înscris!</h5>
@@ -108,14 +111,14 @@ export default {
           email: email,
           phone: phone,
           facebook: facebook,
-          event: [ `${this.eventId}` ]
+          event: this.eventId
         })
         window.localStorage.setItem('attendee', `${firstname}|${lastname}|${email}`)
         window.localStorage.setItem(this.eventSlug, true)
         this.success = true
         this.error = null
       } catch(err) {
-        this.error = err.message
+        this.error = true
       }
       this.loading = false
     },
