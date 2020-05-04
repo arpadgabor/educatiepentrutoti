@@ -16,6 +16,7 @@ export default {
 
     try {
       event = await store.dispatch('getEvents', params.slug)
+
       if(!event)
         return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
       status = 'done'
