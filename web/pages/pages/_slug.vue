@@ -1,9 +1,13 @@
 <script>
 import { format ,getHours } from 'date-fns'
 import { ro } from 'date-fns/locale'
+import oneSignal from '@/components/onesignal'
 
 export default {
   layout: 'default',
+  components: {
+    oneSignal
+  },
   async asyncData({ store, params, error }) {
     let status = 'done'
     let page
@@ -63,15 +67,10 @@ export default {
     </figure>
     <main class="flex flex-col w-full mx-auto px-3">
       <section v-html="$md.render(page.content)" id="html-content"  class="mb-8"></section>
-      <section class="w-full mb-8">
-        <div class="onesignal-customlink-container w-full p-4 bg-gray-100 rounded"></div>
-      </section>
     </main>
   </article>
 </template>
 
 <style lang="postcss">
-.onesignal-customlink-container {
-  @apply w-full
-}
+
 </style>

@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/settings",
-      "handler": "settings.find",
+      "path": "/navigations",
+      "handler": "navigation.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/settings/count",
-      "handler": "settings.count",
+      "path": "/navigations/count",
+      "handler": "navigation.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/settings/:id",
-      "handler": "settings.findOne",
+      "path": "/navigations/:id",
+      "handler": "navigation.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/settings",
-      "handler": "settings.create",
+      "path": "/navigations",
+      "handler": "navigation.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/settings/:id",
-      "handler": "settings.update",
+      "path": "/navigations/:id",
+      "handler": "navigation.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/settings/:id",
-      "handler": "settings.delete",
+      "path": "/navigations/:id",
+      "handler": "navigation.delete",
       "config": {
         "policies": []
       }

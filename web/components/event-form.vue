@@ -113,7 +113,7 @@ export default {
           facebook: facebook,
           event: this.eventId
         })
-        window.localStorage.setItem('attendee', `${firstname}|${lastname}|${email}`)
+        window.localStorage.setItem('attendee', JSON.stringify(this.form))
         window.localStorage.setItem(this.eventSlug, true)
         this.success = true
         this.error = null
@@ -131,13 +131,17 @@ export default {
       }
 
       if(!attendee) return
-      else {
+
+      try {
+        this.form = JSON.parse(attendee)
+      } catch(e) {
         let attendeeData = attendee.split('|')
         this.form.firstname = attendeeData[0]
         this.form.lastname = attendeeData[1]
         this.form.email = attendeeData[2]
-        this.isAttendee = true
       }
+
+      this.isAttendee = true
     }
   }
 }

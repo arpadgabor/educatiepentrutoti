@@ -7,7 +7,7 @@
         class="w-full h-56 object-cover rounded-lg shadow-lg"
       >
       <div class="p-3">
-        <small class="text-primary-normal">{{ niceifyDate(event.date) }} la ora {{ getHour(event.date) }}</small>
+        <small class="text-primary-normal">{{ niceifyDate(event.date) }}</small>
         <h4 class="text-xl font-bold">{{ event.name }}</h4>
         <p class="text-gray-700 mt-2">{{ event.description_meta }}</p>
       </div>
@@ -16,18 +16,15 @@
 </template>
 
 <script>
-import { getHours, formatDistance } from 'date-fns'
+import { format } from 'date-fns'
 import { ro } from 'date-fns/locale'
 
 export default {
   props: ['event'],
   methods: {
     niceifyDate(date) {
-      return formatDistance(new Date(date), new Date(), { locale: ro, addSuffix: true })
+      return format(new Date(date), 'iiii d MMMM, HH:mm', { locale: ro })
     },
-    getHour(date) {
-      return getHours(new Date(date))
-    }
   }
 }
 </script>

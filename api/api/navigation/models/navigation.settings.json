@@ -1,23 +1,22 @@
 {
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "navigations",
   "info": {
-    "name": "Settings"
+    "name": "navigation"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "name": {
+    "text": {
       "type": "string",
-      "unique": true,
       "required": true
     },
-    "value": {
+    "path": {
       "type": "string",
-      "required": true,
-      "unique": false
+      "required": true
     }
-  },
-  "connection": "default",
-  "collectionName": "settings"
+  }
 }

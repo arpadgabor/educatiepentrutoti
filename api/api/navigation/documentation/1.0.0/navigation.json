@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/settings": {
+    "/navigations": {
       "get": {
         "deprecated": false,
-        "description": "Find all the settings's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve settings document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Settings"
+                    "$ref": "#/components/schemas/Navigation"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new settings record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve settings document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Settings"
+                  "$ref": "#/components/schemas/Navigation"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSettings"
+                "$ref": "#/components/schemas/NewNavigation"
               }
             }
           }
         }
       }
     },
-    "/settings/count": {
+    "/navigations/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of settings documents",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve settings document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "parameters": []
       }
     },
-    "/settings/{id}": {
+    "/navigations/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one settings record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve settings document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Settings"
+                  "$ref": "#/components/schemas/Navigation"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single settings record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve settings document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Settings"
+                  "$ref": "#/components/schemas/Navigation"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSettings"
+                "$ref": "#/components/schemas/NewNavigation"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single settings record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single settings based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Settings"
+          "Navigation"
         ],
         "parameters": [
           {
@@ -514,34 +514,34 @@
   },
   "components": {
     "schemas": {
-      "Settings": {
+      "Navigation": {
         "required": [
           "id",
-          "name",
-          "value"
+          "text",
+          "path"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
+          "text": {
             "type": "string"
           },
-          "value": {
+          "path": {
             "type": "string"
           }
         }
       },
-      "NewSettings": {
+      "NewNavigation": {
         "required": [
-          "name",
-          "value"
+          "text",
+          "path"
         ],
         "properties": {
-          "name": {
+          "text": {
             "type": "string"
           },
-          "value": {
+          "path": {
             "type": "string"
           }
         }
@@ -550,7 +550,7 @@
   },
   "tags": [
     {
-      "name": "Settings"
+      "name": "Navigation"
     }
   ]
 }

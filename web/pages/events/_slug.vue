@@ -10,19 +10,17 @@ export default {
     eventForm
   },
   async asyncData({ store, params, error }) {
-    let event = store.state.events.find(ev => ev.slug === params.slug)
+    let event
 
     let status = 'done'
 
-    if(event === undefined) {
-      try {
-        event = await store.dispatch('getEvents', params.slug)
-        if(!event)
-          return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
-        status = 'done'
-      } catch (e) {
-        error({ statusCode: e.statusCode, message: e.message })
-      }
+    try {
+      event = await store.dispatch('getEvents', params.slug)
+      if(!event)
+        return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
+      status = 'done'
+    } catch (e) {
+      error({ statusCode: e.statusCode, message: e.message })
     }
 
     return {
@@ -106,9 +104,6 @@ export default {
       <section v-html="$md.render(event.description)" id="html-content"  class="mb-8"></section>
       <section class="w-full mb-8" v-if="isInFuture">
         <event-form :eventId="event.id" :eventSlug="event.slug" />
-      </section>
-      <section class="w-full mb-8">
-        <div class='onesignal-customlink-container w-full p-4 bg-gray-100 rounded'></div>
       </section>
     </main>
   </article>

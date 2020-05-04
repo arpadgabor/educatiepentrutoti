@@ -60,7 +60,7 @@ export default {
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
 
-
+  loading: false,
   http: {
     proxy: true,
     prefix: '/api'

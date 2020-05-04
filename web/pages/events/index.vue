@@ -1,33 +1,3 @@
-<template>
-  <main class="w-full" v-if="status === 'done'">
-    <h1 class="font-bold text-4xl py-8 text-primary-normal leading-tight">Evenimente viitoare</h1>
-    <section v-if="events" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <event-preview
-        v-for="event of events"
-        :key="event.slug"
-        :event="event"
-        class="transition-all duration-300 ease-in-out hover-move-up"
-        :class="{ 'grayscale': new Date() > new Date(event.date) }"
-      />
-    </section>
-    <section v-else>
-      <h4 class="font-bold text-gray-800 text-center py-12">Nu avem evenimente în viitorul apropiat.</h4>
-    </section>
-  </main>
-  <main v-else-if="status === 'empty'" class="w-full text-center">
-    <h1 class="font-bold text-gray-700">
-      Nu avem evenimente încă.
-    </h1>
-  </main>
-  <main v-else-if="status === 'error'" class="w-full text-center">
-    <div class="alert error">
-      <p>
-        A apărut o eroare și nu s-au putut încărca evenimentele. Încearcă din nou.
-      </p>
-    </div>
-  </main>
-</template>
-
 <script>
 import eventPreview from '~/components/event-preview'
 
@@ -37,33 +7,38 @@ export default {
   },
   async asyncData({ store, error }) {
     let status = 'done'
-    let events = store.state.events
+    let events
     let meta
 
-    if(events.length === 0) {
-      try {
-        let data = await Promise.all([
-          store.dispatch('getEvents'),
-          store.dispatch('getMeta', '/events')
-        ])
+    try {
+      let data = await Promise.all([
+        store.dispatch('getEvents'),
+        store.dispatch('getMeta', '/events')
+      ])
 
-        events = data[0]
-        meta = data[1][0]
+      events = data[0]
+      meta = data[1][0]
 
-        console.log(data)
+      status = 'done'
+    } catch (e) {
+      error({ statusCode: e.statusCode, message: e.message })
+    }
 
-        status = 'done'
-      } catch (e) {
-        error({ statusCode: e.statusCode, message: e.message })
+    let futureEvents = []
+    let pastEvents = []
+
+    for(let event of events) {
+      if(new Date(event.date) > new Date()) {
+        futureEvents.push(event)
+      }
+      else {
+        pastEvents.push(event)
       }
     }
 
-    if(events.length === 0 && status === 'done') {
-      status = 'empty'
-    }
-
     return {
-      events: events,
+      pastEvents: pastEvents,
+      futureEvents: futureEvents,
       status: status,
       meta: meta
     }
@@ -82,10 +57,44 @@ export default {
 }
 </script>
 
+<template>
+  <main class="w-full" v-if="status === 'done'">
+    <h1 class="font-bold text-4xl my-8 text-primary-normal leading-tight">Evenimente viitoare</h1>
+    <section v-if="futureEvents.length > 0" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <event-preview
+        v-for="event of futureEvents"
+        :key="event.slug"
+        :event="event"
+        class="transition-all duration-300 ease-in-out hover-move-up"
+      />
+    </section>
+    <section v-else>
+      <h4 class="font-bold text-gray-700">Nu avem evenimente în viitorul apropiat.</h4>
+    </section>
+
+    <h1 class="font-bold text-2xl mt-16 mb-8 text-secondary-normal leading-tight">Evenimente trecute</h1>
+    <section v-if="pastEvents.length > 0" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <event-preview
+        v-for="event of pastEvents"
+        :key="event.slug"
+        :event="event"
+        class="transition-all duration-300 ease-in-out hover-move-up"
+        :class="{ 'grayscale': new Date() > new Date(event.date) }"
+      />
+    </section>
+  </main>
+  <main v-else-if="status === 'error'" class="w-full text-center">
+    <div class="alert error">
+      <p>
+        A apărut o eroare și nu s-au putut încărca evenimentele. Încearcă din nou.
+      </p>
+    </div>
+  </main>
+</template>
+
 <style scoped lang="postcss">
 .grayscale {
   filter: grayscale(100%);
-  @apply opacity-25;
 }
 
 .hover-move-up:hover {
