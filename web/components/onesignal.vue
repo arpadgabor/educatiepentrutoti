@@ -12,6 +12,6 @@ export default {
 
 <style scoped lang="postcss">
 .onesignal-customlink-container {
-  @apply w-full
+  @apply w-full;
 }
 </style>
