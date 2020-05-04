@@ -27,6 +27,9 @@ jobs:
           FOLDER_PATH: web
           REGISTRY: docker.pkg.github.com
           IMAGE: arpadgabor/educatiepentrutoti/web
+          
+      - name: Show images
+        run: docker images
 
       - name: Push to Registry
         run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
