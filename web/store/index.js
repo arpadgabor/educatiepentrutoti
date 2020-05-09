@@ -1,10 +1,22 @@
 export const state = () => ({
-  navItems: null
+  navItems: null,
+  articles: {
+    all: null,
+    latest: null,
+    rest: null
+  }
 })
 
 export const mutations = {
   setNavItems(state, items) {
     state.navItems = items
+  },
+  setArticles(state, articles) {
+    state.articles = {
+      all: articles,
+      latest: articles.shift(),
+      rest: articles
+    }
   }
 }
 
@@ -20,7 +32,7 @@ export const actions = {
   },
 
   async getEvents({ commit }, slug = null) {
-    let events = await this.$http.$get(`events${ slug ? `/?slug=${slug}` : '' }`)
+    let events = await this.$http.$get(`events?_sort=created_at:desc${ slug ? `&slug=${slug}` : '' }`)
 
     return (slug === null ? events : events[0])
   },

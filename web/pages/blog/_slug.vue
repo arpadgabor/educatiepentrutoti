@@ -1,0 +1,76 @@
+<script>
+import { format ,getHours } from 'date-fns'
+import { ro } from 'date-fns/locale'
+
+export default {
+  layout: 'default',
+  async asyncData({ store, params, error, $http}) {
+    let article
+
+    if(store.state.articles.all) {
+      article = store.state.articles.all.find(art => {
+        return art.slug === params.slug
+      })
+    }
+    if(article) return { article: article }
+
+    try {
+      article = await $http.$get(`blogs/?slug=${params.slug}`)
+    } catch (e) {
+      error({ statusCode: e.statusCode, message: e.message })
+    }
+
+    if(!article || article.length === 0)
+      return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
+
+    return { article: article[0] }
+  },
+  data() {
+    return {
+      article: null
+    }
+  },
+  head () {
+    if(this.article) {
+      return {
+        title: this.article.headline,
+        meta: [
+          { hid: 'description', name: 'description', content: this.article.excerpt },
+          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.article.image.url}` }
+        ]
+      }
+    }
+  }
+}
+</script>
+
+<template>
+  <article v-if="article" class="w-full md:w-2/3 lg:w-2/3 mx-auto pb-32">
+    <header class="w-full text-center my-8">
+      <h1 class="font-bold text-2xl md:text-4xl leading-tight text-secondary-dark">
+        {{ article.headline }}
+      </h1>
+      <p class="max-w-70ch text-center mx-auto">
+        {{ article.excerpt }}
+      </p>
+    </header>
+    <figure class="w-full my-8">
+      <img
+        :src="`${article.image.url}`"
+        :alt="`Imagine de fundal eveniment: ${article.name}`"
+        class="w-full object-cover rounded-lg shadow-lg"
+        style="height: 360px;"
+      >
+    </figure>
+    <main class="max-w-70ch flex flex-col mx-auto px-3">
+      <section v-html="$md.render(article.content)" id="html-content">
+      </section>
+    </main>
+  </article>
+</template>
+
+<style lang="postcss">
+.max-w-70ch {
+  max-width: 70ch;
+}
+</style>

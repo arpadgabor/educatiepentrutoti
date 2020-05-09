@@ -11,19 +11,24 @@ export default {
 
 <template>
   <div class="flex flex-col sm:flex-row items-center">
-    <nuxt-link
+    <span
       v-for="item of navItems"
       :key="item.id"
-      :to="item.path"
-      class="menu-item w-full sm:w-auto p-3 hover:underline"
-      exact-active-class="menu-item-active"
+      class="h-full"
     >
-      {{ item.text }}
-    </nuxt-link>
+      <nuxt-link
+        v-if="item.enabled"
+        :to="item.path"
+        class="menu-item h-full w-full sm:w-auto p-3 hover:underline"
+        exact-active-class="menu-item-active"
+      >
+        {{ item.text }}
+      </nuxt-link>
+    </span>
   </div>
 </template>
 
-<style>
+<style scoped lang="postcss">
 .menu-item {
   @apply flex items-center h-full font-bold;
 }

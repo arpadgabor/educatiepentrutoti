@@ -1,9 +1,13 @@
-input {
+input, textarea {
   transition: all 0.2s ease-out;
   @apply h-12 px-4 bg-white border border-secondary-lighter rounded;
 }
 
-input:hover {
+textarea {
+  @apply pt-2;
+}
+
+input:hover, textarea:hover {
   @apply border-secondary-light;
 }
 
@@ -13,6 +17,11 @@ button {
 }
 
 input:focus,
-button:focus {
+button:focus,
+textarea:focus {
   @apply shadow-outline outline-none;
+}
+
+button:disabled {
+  @apply opacity-50;
 }
