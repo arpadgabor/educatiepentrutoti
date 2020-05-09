@@ -1,23 +1,32 @@
 <script>
 export default {
+  async asyncData({ store }) {
+    try {
+      const meta = await store.dispatch('getMeta', '/contact')
+      return { meta: meta }
+    } catch(e) {
+      return { meta: null }
+    }
+  },
   head() {
+    if (!this.meta) return
     return {
-      title: 'Contactează-ne!',
+      title: this.meta.title,
       meta: [
         {
           hid: 'og:title',
           name: 'og:title',
-          content: 'Contactează-ne!'
+          content: this.meta.title
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: 'Contactează echipa Educație pentru toți!'
+          content: this.meta.description
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: '/images/og-preview.png'
+          content: this.meta.image.url
         }
       ]
     }
@@ -87,7 +96,10 @@ export default {
         </p>
       </div>
       <div>
-        <form class="p-4 bg-white rounded shadow-md w-full flex flex-col" @submit.prevent="submit">
+        <form
+          class="p-4 bg-white rounded shadow-md w-full flex flex-col"
+          @submit.prevent="submit"
+        >
           <div class="alert error" v-if="status === 'error'">
             {{ error }}
           </div>
@@ -119,7 +131,9 @@ export default {
             class="mb-2 h-32"
             required
           />
-          <button type="submit" :disabled="status === 'loading'">{{ buttonText }}</button>
+          <button type="submit" :disabled="status === 'loading'">
+            {{ buttonText }}
+          </button>
         </form>
       </div>
     </div>

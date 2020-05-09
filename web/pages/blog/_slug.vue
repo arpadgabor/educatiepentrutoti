@@ -35,8 +35,9 @@ export default {
       return {
         title: this.article.headline,
         meta: [
-          { hid: 'description', name: 'description', content: this.article.excerpt },
-          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.article.image.url}` }
+          { hid: 'og:title', name: 'og:title', content: this.article.headline },
+          { hid: 'og:description', name: 'og:description', content: this.article.excerpt },
+          { hid: 'og:image', property: 'og:image', content: this.article.image.url }
         ]
       }
     }

@@ -42,8 +42,9 @@ export default {
       return {
         title: this.page.title,
         meta: [
-          { hid: 'description', name: 'description', content: this.page.description_meta },
-          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.page.image.url}` }
+          { hid: 'og:title', name: 'og:title', content: this.page.title },
+          { hid: 'og:description', name: 'og:description', content: this.page.description_meta },
+          { hid: 'og:image', property: 'og:image', content: this.page.image.url }
         ]
       }
     }

@@ -40,8 +40,9 @@ export default {
       return {
         title: this.event.name,
         meta: [
-          { hid: 'description', name: 'description', content: this.event.description_meta },
-          { hid: 'og:image', property: 'og:image', content: `${process.env.API_URL}${this.event.image.url}` }
+          { hid: 'og:title', name: 'og:title', content: this.event.name },
+          { hid: 'og:description', name: 'og:description', content: this.event.description_meta },
+          { hid: 'og:image', property: 'og:image', content: this.event.image.url }
         ]
       }
     }
