@@ -3,7 +3,7 @@ export default {
   async asyncData({ store }) {
     try {
       const meta = await store.dispatch('getMeta', '/contact')
-      return { meta: meta }
+      return { meta: meta[0] }
     } catch(e) {
       return { meta: null }
     }
