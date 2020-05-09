@@ -5,8 +5,13 @@ export default {
       title: 'Contactează-ne!',
       meta: [
         {
-          hid: 'description',
-          name: 'description',
+          hid: 'og:title',
+          name: 'og:title',
+          content: 'Contactează-ne!'
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
           content: 'Contactează echipa Educație pentru toți!'
         },
         {
