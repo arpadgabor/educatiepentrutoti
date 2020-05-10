@@ -22,15 +22,11 @@ export default {
     ]
   },
   css: [
-    'aos/dist/aos.css',
-    '@/assets/css/aos.css',
     '@/assets/css/tailwind.css'
   ],
 
-
   plugins: [
     '~/plugins/http.server',
-    { src: '@/plugins/aos', ssr: false },
   ],
 
 
@@ -68,7 +64,6 @@ export default {
   proxy: {
     '/api/': {
       target: process.env.API_URL,
-      pathRewrite: { '^/api/': '' }
     },
     '/uploads/': {
       target: process.env.API_URL,
