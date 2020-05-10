@@ -5,11 +5,13 @@ WORKDIR /app
 COPY ./api/package.json ./
 COPY ./api/package-lock.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY ./api .
 
-RUN NODE_ENV=production yarn build
+ENV NODE_ENV production
 
-CMD ["yarn", "start"]
+RUN npm run build
 
+EXPOSE 1337
+CMD ["npm", "start"]
