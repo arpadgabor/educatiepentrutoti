@@ -1,8 +1,26 @@
 'use strict';
+const { sanitizeEntity } = require('strapi-utils');
 
-/**
- * Read the documentation (https://strapi.io/documentation/3.0.0-beta.x/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
+module.exports = {
+  async redirect(ctx) {
+    const { path } = ctx.params;
 
-module.exports = {};
+    let entity = await strapi.query('redirects').model.query(qb => { qb.where('path', path) }).fetch()
+
+    if(!entity) {
+      ctx.status = 404
+      return ctx.body = {
+        statusCode: 404,
+        message: 'URL not found'
+      }
+    }
+
+    let sanitizedEntity = sanitizeEntity(entity, { model: strapi.models.redirects })
+
+    await strapi.query('redirects').model.query(qb => {
+      qb.where('path', path).update('views', ++sanitizedEntity.views)
+    }).fetch()
+
+    return sanitizedEntity
+  },
+};

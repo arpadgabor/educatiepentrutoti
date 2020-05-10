@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/redirects/to/:path",
+      "handler": "redirects.redirect",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

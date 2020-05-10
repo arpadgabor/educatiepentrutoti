@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/articles": {
+    "/categories": {
       "get": {
         "deprecated": false,
-        "description": "Find all the articles's records",
+        "description": "Find all the categories's records",
         "responses": {
           "200": {
-            "description": "Retrieve articles document(s)",
+            "description": "Retrieve categories document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Articles"
+                    "$ref": "#/components/schemas/Categories"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new articles record",
+        "description": "Create a new categories record",
         "responses": {
           "200": {
-            "description": "Retrieve articles document(s)",
+            "description": "Retrieve categories document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Articles"
+                  "$ref": "#/components/schemas/Categories"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewArticles"
+                "$ref": "#/components/schemas/NewCategories"
               }
             }
           }
         }
       }
     },
-    "/articles/count": {
+    "/categories/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of articles documents",
+        "description": "Retrieve the numver of categories documents",
         "responses": {
           "200": {
-            "description": "Retrieve articles document(s)",
+            "description": "Retrieve categories document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "parameters": []
       }
     },
-    "/articles/{id}": {
+    "/categories/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one articles record",
+        "description": "Find one categories record",
         "responses": {
           "200": {
-            "description": "Retrieve articles document(s)",
+            "description": "Retrieve categories document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Articles"
+                  "$ref": "#/components/schemas/Categories"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single articles record",
+        "description": "Update a single categories record",
         "responses": {
           "200": {
-            "description": "Retrieve articles document(s)",
+            "description": "Retrieve categories document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Articles"
+                  "$ref": "#/components/schemas/Categories"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewArticles"
+                "$ref": "#/components/schemas/NewCategories"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single articles record",
+        "description": "Delete a single categories record",
         "responses": {
           "200": {
-            "description": "deletes a single articles based on the ID supplied",
+            "description": "deletes a single categories based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Articles"
+          "Categories"
         ],
         "parameters": [
           {
@@ -514,132 +514,66 @@
   },
   "components": {
     "schemas": {
-      "Articles": {
+      "Categories": {
         "required": [
-          "id"
+          "id",
+          "name"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "headline": {
+          "name": {
             "type": "string"
           },
-          "excerpt": {
-            "type": "string"
-          },
-          "cover": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "sha256": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
+          "blogs": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "headline",
+                "excerpt"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "headline": {
+                  "type": "string"
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "uid"
+                },
+                "category": {
+                  "type": "string"
+                }
               }
             }
-          },
-          "published": {
-            "type": "boolean"
-          },
-          "content": {
-            "type": "string"
-          },
-          "author": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              }
-            }
-          },
-          "slug": {
-            "type": "string"
           }
         }
       },
-      "NewArticles": {
+      "NewCategories": {
+        "required": [
+          "name"
+        ],
         "properties": {
-          "headline": {
+          "name": {
             "type": "string"
           },
-          "excerpt": {
-            "type": "string"
-          },
-          "published": {
-            "type": "boolean"
-          },
-          "content": {
-            "type": "string"
-          },
-          "author": {
-            "type": "string"
-          },
-          "slug": {
-            "type": "string"
+          "blogs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -647,7 +581,7 @@
   },
   "tags": [
     {
-      "name": "Articles"
+      "name": "Categories"
     }
   ]
 }

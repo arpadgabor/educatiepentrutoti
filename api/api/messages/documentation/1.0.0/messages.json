@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/partners": {
+    "/messages": {
       "get": {
         "deprecated": false,
-        "description": "Find all the partners's records",
+        "description": "Find all the messages's records",
         "responses": {
           "200": {
-            "description": "Retrieve partners document(s)",
+            "description": "Retrieve messages document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Partners"
+                    "$ref": "#/components/schemas/Messages"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new partners record",
+        "description": "Create a new messages record",
         "responses": {
           "200": {
-            "description": "Retrieve partners document(s)",
+            "description": "Retrieve messages document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Partners"
+                  "$ref": "#/components/schemas/Messages"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPartners"
+                "$ref": "#/components/schemas/NewMessages"
               }
             }
           }
         }
       }
     },
-    "/partners/count": {
+    "/messages/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of partners documents",
+        "description": "Retrieve the numver of messages documents",
         "responses": {
           "200": {
-            "description": "Retrieve partners document(s)",
+            "description": "Retrieve messages document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "parameters": []
       }
     },
-    "/partners/{id}": {
+    "/messages/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one partners record",
+        "description": "Find one messages record",
         "responses": {
           "200": {
-            "description": "Retrieve partners document(s)",
+            "description": "Retrieve messages document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Partners"
+                  "$ref": "#/components/schemas/Messages"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single partners record",
+        "description": "Update a single messages record",
         "responses": {
           "200": {
-            "description": "Retrieve partners document(s)",
+            "description": "Retrieve messages document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Partners"
+                  "$ref": "#/components/schemas/Messages"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPartners"
+                "$ref": "#/components/schemas/NewMessages"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single partners record",
+        "description": "Delete a single messages record",
         "responses": {
           "200": {
-            "description": "deletes a single partners based on the ID supplied",
+            "description": "deletes a single messages based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Partners"
+          "Messages"
         ],
         "parameters": [
           {
@@ -514,80 +514,40 @@
   },
   "components": {
     "schemas": {
-      "Partners": {
+      "Messages": {
         "required": [
-          "id"
+          "id",
+          "email",
+          "message"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
+          "email": {
             "type": "string"
           },
-          "URL": {
+          "fullName": {
             "type": "string"
           },
-          "category": {
+          "message": {
             "type": "string"
-          },
-          "logo": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "sha256": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              }
-            }
           }
         }
       },
-      "NewPartners": {
+      "NewMessages": {
+        "required": [
+          "email",
+          "message"
+        ],
         "properties": {
-          "name": {
+          "email": {
             "type": "string"
           },
-          "URL": {
+          "fullName": {
             "type": "string"
           },
-          "category": {
+          "message": {
             "type": "string"
           }
         }
@@ -596,7 +556,7 @@
   },
   "tags": [
     {
-      "name": "Partners"
+      "name": "Messages"
     }
   ]
 }

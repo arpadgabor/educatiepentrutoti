@@ -9,9 +9,7 @@ RUN yarn install
 
 COPY ./api .
 
-ENV NODE_ENV production
-
-RUN yarn build
+RUN NODE_ENV=production yarn build
 
 EXPOSE 1337
 
