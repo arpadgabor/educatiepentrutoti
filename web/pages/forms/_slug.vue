@@ -1,5 +1,5 @@
 <script>
-import { format ,getHours } from 'date-fns'
+import { format } from 'date-fns'
 import { ro } from 'date-fns/locale'
 import generateMeta from '@/helpers/meta'
 
@@ -17,7 +17,7 @@ export default {
     }
     return error({ statusCode: 404, message: 'Nu s-a găsit formularul.' })
   },
-  head () {
+  head() {
     return generateMeta(this.form.name, this.form.meta_description, this.form.image ? this.form.image.url : undefined)
   },
   data() {
@@ -30,6 +30,14 @@ export default {
     this.typeform = require('@typeform/embed')
     this.checkCompletion()
     this.loadForm()
+  },
+  computed: {
+    deadline() {
+      return format(new Date(this.form.deadline), 'dd.MM, HH:mm')
+    },
+    isBeforeDeadline() {
+      return new Date() < new Date(this.form.deadline)
+    }
   },
   methods: {
     loadForm() {
@@ -83,12 +91,13 @@ export default {
     <main class="max-w-70ch flex flex-col mx-auto px-3">
       <section name="content" v-html="$md.render(form.description)" id="html-content">
       </section>
-      <section v-if="!completed" name="call-to-action" class="w-full flex justify-center">
-        <button @click="openForm">
+      <section v-if="!completed && isBeforeDeadline" name="call-to-action" class="w-full block">
+        <button @click="openForm" class="mx-auto block mb-2 mt-8">
           {{ form.ctaText }}
         </button>
+        <small class="text-center text-sm text-gray-700 block">Deadline — {{ deadline }}</small>
       </section>
-      <section v-else name="form-completed" class="w-full border border-primary-normal rounded-lg p-4">
+      <section v-else-if="completed" name="form-completed" class="w-full border border-primary-normal rounded-lg p-4">
         <div class="w-full" v-html="$md.render(form.thanksNote)" id="html-content">
         </div>
       </section>
