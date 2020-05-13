@@ -1,11 +1,6 @@
 <template>
   <section
     class="w-full mx-auto py-16 flex z-10 relative"
-    data-aos="bounce-up"
-    data-aos-duration="1000"
-    data-aos-delay="800"
-    data-aos-once="true"
-    data-aos-anchor-placement="bottom-bottom"
   >
     <div class="p-4 bg-white rounded shadow-md w-auto" v-if="!alreadySubscribed">
       <h4 class="font-bold text-secondary-normal text-xl">

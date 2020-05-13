@@ -1,9 +1,6 @@
 /* purgecss start ignore */
 @import 'tailwindcss/base';
 
-@import './aos.css';
-@import 'aos/dist/aos.css';
-
 @import 'tailwindcss/components';
 
 @import './components/forms.css';
