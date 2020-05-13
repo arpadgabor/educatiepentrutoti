@@ -68,6 +68,7 @@ export default {
     },
     '/uploads/': {
       target: process.env.API_URL,
+      pathRewrite: { '^/uploads/': '/uploads/' }
     }
   },
 
