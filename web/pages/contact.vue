@@ -1,36 +1,8 @@
 <script>
 export default {
   middleware: ['meta-loader'],
-  async asyncData({ store }) {
-    try {
-      const meta = await store.dispatch('getMeta', '/contact')
-      return { meta: meta[0] }
-    } catch(e) {
-      return { meta: null }
-    }
-  },
   head() {
-    if (!this.meta) return
-    return {
-      title: this.meta.title,
-      meta: [
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: this.meta.title
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          content: this.meta.description
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.meta.image.url
-        }
-      ]
-    }
+    return this.$store.state.pageMeta
   },
   data() {
     return {

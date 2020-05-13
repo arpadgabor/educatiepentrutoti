@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "forms",
+  "info": {
+    "name": "Form"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "meta_description": {
+      "type": "text",
+      "required": true,
+      "default": "Un studiu realizat de echipa Educație pentru toți!",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "deadline": {
+      "type": "datetime",
+      "required": false
+    },
+    "provider": {
+      "type": "enumeration",
+      "enum": [
+        "typeform",
+        "googleform"
+      ],
+      "default": "typeform",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "thanksNote": {
+      "type": "richtext",
+      "default": "Mulțumim că ați completat formularul!",
+      "required": true
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Completează!",
+      "required": true
+    }
+  }
+}

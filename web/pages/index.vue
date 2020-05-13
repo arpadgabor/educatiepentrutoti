@@ -20,8 +20,8 @@ export default {
     followUs,
     interact
   },
-  middleware: ['meta-loader'],
   transition: 'page',
+  middleware: ['meta-loader'],
   head () {
     return this.$store.state.pageMeta
   }
