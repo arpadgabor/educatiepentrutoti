@@ -9,6 +9,7 @@ RUN npm install
 
 COPY ./api .
 
+VOLUME /app/public/uploads
 ENV NODE_ENV production
 
 RUN npm run build

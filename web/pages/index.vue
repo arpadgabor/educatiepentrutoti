@@ -20,31 +20,11 @@ export default {
     followUs,
     interact
   },
+  middleware: ['meta-loader'],
   transition: 'page',
-  async asyncData({ store, error }) {
-    try {
-      let meta = await store.dispatch('getMeta', '/home')
-
-      return {
-        meta: meta[0]
-      }
-    } catch(e) {
-      console.log(e)
-      error({ statusCode: e.statusCode, message: e.message })
-    }
-  },
   head () {
-    if(this.meta) {
-      return {
-        title: this.meta.title,
-        meta: [
-          { hid: 'og:title', name: 'og:title', content: this.meta.title },
-          { hid: 'og:description', name: 'og:description', content: this.meta.description },
-          { hid: 'og:image', property: 'og:image', content: `${this.meta.image.url}` }
-        ]
-      }
-    }
-  },
+    return this.$store.state.pageMeta
+  }
 }
 </script>
 

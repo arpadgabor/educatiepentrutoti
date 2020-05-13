@@ -1,6 +1,7 @@
 <script>
 import { format ,getHours } from 'date-fns'
 import { ro } from 'date-fns/locale'
+import generateMeta from '@/helpers/meta'
 
 import eventForm from '~/components/event-form'
 
@@ -12,21 +13,17 @@ export default {
   async asyncData({ store, params, error }) {
     let event
 
-    let status = 'done'
-
     try {
       event = await store.dispatch('getEvents', params.slug)
 
       if(!event)
         return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
-      status = 'done'
     } catch (e) {
-      error({ statusCode: e.statusCode, message: e.message })
+      return error({ statusCode: e.statusCode, message: e.message })
     }
 
     return {
-      event: event,
-      status: status
+      event: event
     }
   },
   data() {
@@ -36,16 +33,7 @@ export default {
     }
   },
   head () {
-    if(this.event) {
-      return {
-        title: this.event.name,
-        meta: [
-          { hid: 'og:title', name: 'og:title', content: this.event.name },
-          { hid: 'og:description', name: 'og:description', content: this.event.description_meta },
-          { hid: 'og:image', property: 'og:image', content: this.event.image.url }
-        ]
-      }
-    }
+    return generateMeta(this.event.name, this.event.description_meta, this.event.image ? this.event.image.url : undefined)
   },
   mounted() {
     this.checkSignUp()
@@ -70,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <article v-if="status === 'done'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
+  <article class="w-full md:w-2/3 lg:w-2/3 mx-auto">
     <header class="w-full text-center my-8">
       <div class="alert error text-left mb-4" v-if="!isInFuture">
         <p>Evenimentul s-a încheiat.</p>
@@ -108,16 +96,6 @@ export default {
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
     </main>
-  </article>
-  <article v-else-if="status === 'loading'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
-    <p>Se încarcă</p>
-  </article>
-  <article v-else-if="status === 'error'" class="w-full md:w-2/3 lg:w-2/3 mx-auto">
-    <div class="alert error">
-      <p>
-        A apărut o eroare la încărcare articolului.
-      </p>
-    </div>
   </article>
 </template>
 

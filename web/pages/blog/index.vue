@@ -7,34 +7,19 @@ export default {
     previewLatest,
     previewNormal
   },
+  layout: 'default',
+  middleware: ['meta-loader'],
   async asyncData({ store, error, $http }) {
-    let articles, meta
+    let articles
     try {
-      [articles, meta] = await Promise.all([
-        $http.$get('blogs?_sort=created_at:desc'),
-        store.dispatch('getMeta', '/blog')
-      ])
-
+      articles = await $http.$get('blogs?_sort=created_at:desc')
       store.commit('setArticles', articles)
     } catch (e) {
       error({ statusCode: e.statusCode, message: e.message })
     }
-
-    return {
-      meta: meta[0]
-    }
   },
   head () {
-    if(this.meta) {
-      return {
-        title: this.meta.title,
-        meta: [
-          { hid: 'og:title', name: 'og:title', content: this.meta.title },
-          { hid: 'og:description', name: 'og:description', content: this.meta.description },
-          { hid: 'og:image', property: 'og:image', content: `${this.meta.image.url}` }
-        ]
-      }
-    }
+    return this.$store.state.pageMeta
   },
 }
 </script>

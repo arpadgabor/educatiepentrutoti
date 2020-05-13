@@ -1,41 +1,37 @@
 <script>
 import { format ,getHours } from 'date-fns'
 import { ro } from 'date-fns/locale'
-import generateMeta from '@/helpers/meta'
 
 export default {
   layout: 'default',
-  transition: 'page',
-  async asyncData({ store, params, error, $http}) {
-    let article
+  async asyncData({ store, params, error, $http }) {
+    let form
 
-    // Check if article is already in store, i.e. user comes from /blog
-    if(store.state.articles.all) {
-      article = store.state.articles.all.find(artcl => {
-        return artcl.slug === params.slug
-      })
-    }
-    if(article) return { article: article }
-
-    // If not, get article from backend
     try {
-      [article] = await $http.$get(`blogs/?slug=${params.slug}`)
-
-      if(!article)
-        return error({ statusCode: 404, message: 'Nu s-a găsit articolul' })
+      [form] = await $http.$get(`forms/?slug=${params.slug}`)
+      return { form: form }
     } catch (e) {
       return error({ statusCode: e.statusCode, message: e.message })
     }
 
-    return { article: article }
+    return error({ statusCode: 404, message: 'Nu s-a găsit formularul.' })
   },
   data() {
     return {
-      article: null
+      form: null
     }
   },
   head () {
-    return generateMeta(this.article.headline, this.article.excerpt, this.article.image.url)
+    if(this.article) {
+      return {
+        title: this.article.headline,
+        meta: [
+          { hid: 'og:title', name: 'og:title', content: this.article.headline },
+          { hid: 'og:description', name: 'og:description', content: this.article.excerpt },
+          { hid: 'og:image', property: 'og:image', content: this.article.image.url }
+        ]
+      }
+    }
   }
 }
 </script>

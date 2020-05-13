@@ -2,7 +2,8 @@
   <nuxt-link :to="`/events/${event.slug}`" :title="`Link către eveniment: ${event.name}`">
     <article class="w-full flex flex-col">
       <img
-        :src="`${event.image.url}`"
+        v-if="event.image"
+        :src="event.image.url"
         :alt="`Imagine de fundal eveniment: ${event.name}`"
         class="w-full h-56 object-cover rounded-lg shadow-lg"
       >

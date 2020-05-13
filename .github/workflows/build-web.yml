@@ -5,6 +5,7 @@ on:
       - 'master'
     paths:
       - 'web/**'
+      - '.github/workflows/build-web.yml'
 
 jobs:
   build:
@@ -17,22 +18,20 @@ jobs:
       - name: Login to Registry
         run: docker login $REGISTRY -u $USER -p $TOKEN
         env:
+          USER: arpadgabor
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REGISTRY: docker.pkg.github.com
-          USER: arpadgabor
 
       - name: Build image
-        run: docker build . -t "$REGISTRY/$IMAGE:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
+        run: docker build $BUILD_ARGS . -t "$REGISTRY/$GITHUB_REPOSITORY/$TAG:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
         env:
+          TAG: web
           FOLDER_PATH: web
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/web
-          
-      - name: Show images
-        run: docker images
+          BUILD_ARGS: --build-arg API_URL=${{ secrets.API_URL }} --build-arg ONESIGNAL_ID=${{ secrets.ONESIGNAL_ID }}
 
       - name: Push to Registry
-        run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
+        run: docker push "$REGISTRY/$GITHUB_REPOSITORY/$TAG:$GITHUB_SHA"
         env:
+          TAG: web
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/web

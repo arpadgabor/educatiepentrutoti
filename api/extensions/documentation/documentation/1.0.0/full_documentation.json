@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "05/10/2020 4:41:12 PM"
+    "x-generation-date": "05/13/2020 1:27:21 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -7519,10 +7519,22 @@
               "name": {
                 "type": "string"
               },
-              "hash": {
+              "alternativeText": {
                 "type": "string"
               },
-              "sha256": {
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
                 "type": "string"
               },
               "ext": {
@@ -7535,6 +7547,9 @@
                 "type": "number"
               },
               "url": {
+                "type": "string"
+              },
+              "previewUrl": {
                 "type": "string"
               },
               "provider": {
@@ -7701,10 +7716,22 @@
               "name": {
                 "type": "string"
               },
-              "hash": {
+              "alternativeText": {
                 "type": "string"
               },
-              "sha256": {
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
                 "type": "string"
               },
               "ext": {
@@ -7717,6 +7744,9 @@
                 "type": "number"
               },
               "url": {
+                "type": "string"
+              },
+              "previewUrl": {
                 "type": "string"
               },
               "provider": {
@@ -7892,10 +7922,22 @@
                 "name": {
                   "type": "string"
                 },
-                "hash": {
+                "alternativeText": {
                   "type": "string"
                 },
-                "sha256": {
+                "caption": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                },
+                "formats": {
+                  "type": "object"
+                },
+                "hash": {
                   "type": "string"
                 },
                 "ext": {
@@ -7908,6 +7950,9 @@
                   "type": "number"
                 },
                 "url": {
+                  "type": "string"
+                },
+                "previewUrl": {
                   "type": "string"
                 },
                 "provider": {
@@ -7955,6 +8000,10 @@
           },
           "path": {
             "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -7969,6 +8018,10 @@
           },
           "path": {
             "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -8006,10 +8059,22 @@
               "name": {
                 "type": "string"
               },
-              "hash": {
+              "alternativeText": {
                 "type": "string"
               },
-              "sha256": {
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
                 "type": "string"
               },
               "ext": {
@@ -8022,6 +8087,9 @@
                 "type": "number"
               },
               "url": {
+                "type": "string"
+              },
+              "previewUrl": {
                 "type": "string"
               },
               "provider": {

@@ -5,6 +5,7 @@ on:
       - 'master'
     paths:
       - 'api/**'
+      - '.github/workflows/build-api.yml'
 
 jobs:
   build:
@@ -22,14 +23,14 @@ jobs:
           USER: arpadgabor
 
       - name: Build image
-        run: docker build . -t "$REGISTRY/$IMAGE:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
+        run: docker build . -t "$REGISTRY/$GITHUB_REPOSITORY/$TAG:$GITHUB_SHA" --file $FOLDER_PATH/Dockerfile
         env:
+          TAG: backend
           FOLDER_PATH: api
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/backend
 
       - name: Push to Registry
-        run: docker push "$REGISTRY/$IMAGE:$GITHUB_SHA"
+        run: docker push "$REGISTRY/$GITHUB_REPOSITORY/$TAG:$GITHUB_SHA"
         env:
+          TAG: backend
           REGISTRY: docker.pkg.github.com
-          IMAGE: arpadgabor/educatiepentrutoti/backend

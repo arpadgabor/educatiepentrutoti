@@ -1,5 +1,6 @@
 export const state = () => ({
   navItems: null,
+  pageMeta: null,
   articles: {
     all: null,
     latest: null,
@@ -17,6 +18,9 @@ export const mutations = {
       latest: articles.shift(),
       rest: articles
     }
+  },
+  setMeta(state, meta) {
+    state.pageMeta = meta
   }
 }
 
@@ -45,12 +49,7 @@ export const actions = {
   },
 
   async getRedirect(_, path) {
-    return await this.$http.$get(`redirects?path=${path}`)
-  },
-  async incrementRedirect(_, { id, inc }) {
-    return await this.$http.$put(`redirects/${id}`, {
-      views: inc
-    })
+    return await this.$http.$get(`redirects/to/${path}`)
   },
 
   async getNavItems({ commit }) {

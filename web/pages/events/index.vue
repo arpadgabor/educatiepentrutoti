@@ -5,21 +5,11 @@ export default {
   components: {
     eventPreview
   },
+  middleware: ['meta-loader'],
   async asyncData({ store, error }) {
-    let status = 'done'
     let events
-    let meta
-
     try {
-      let data = await Promise.all([
-        store.dispatch('getEvents'),
-        store.dispatch('getMeta', '/events')
-      ])
-
-      events = data[0]
-      meta = data[1][0]
-
-      status = 'done'
+      events = await store.dispatch('getEvents')
     } catch (e) {
       error({ statusCode: e.statusCode, message: e.message })
     }
@@ -38,28 +28,17 @@ export default {
 
     return {
       pastEvents: pastEvents,
-      futureEvents: futureEvents,
-      status: status,
-      meta: meta
+      futureEvents: futureEvents
     }
   },
   head () {
-    if(this.meta) {
-      return {
-        title: this.meta.title,
-        meta: [
-          { hid: 'og:title', name: 'og:title', content: this.meta.title },
-          { hid: 'og:description', name: 'og:description', content: this.meta.description },
-          { hid: 'og:image', property: 'og:image', content: `${this.meta.image.url}` }
-        ]
-      }
-    }
+    return this.$store.state.pageMeta
   },
 }
 </script>
 
 <template>
-  <main class="w-full" v-if="status === 'done'">
+  <main class="w-full">
     <h1 class="font-bold text-4xl my-8 text-primary-normal leading-tight">Evenimente viitoare</h1>
     <section v-if="futureEvents.length > 0" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
       <event-preview
@@ -83,13 +62,6 @@ export default {
         :class="{ 'grayscale': new Date() > new Date(event.date) }"
       />
     </section>
-  </main>
-  <main v-else-if="status === 'error'" class="w-full text-center">
-    <div class="alert error">
-      <p>
-        A apărut o eroare și nu s-au putut încărca evenimentele. Încearcă din nou.
-      </p>
-    </div>
   </main>
 </template>
 

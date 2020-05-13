@@ -1,5 +1,6 @@
 <script>
 export default {
+  middleware: ['meta-loader'],
   async asyncData({ store }) {
     try {
       const meta = await store.dispatch('getMeta', '/contact')
