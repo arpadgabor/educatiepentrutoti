@@ -54,7 +54,7 @@ export default {
       Contactează-ne!
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 col-gap-4">
-      <div id="html-content">
+      <div class="html-content">
         <h3>
           Așteptăm mesajul tău!
         </h3>

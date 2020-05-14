@@ -67,7 +67,7 @@ export default {
       >
     </figure>
     <main class="flex flex-col w-full mx-auto px-3">
-      <section v-html="$md.render(page.content)" id="html-content"  class="mb-8"></section>
+      <section v-html="$md.render(page.content)" class="mb-8 html-content"></section>
     </main>
   </article>
 </template>

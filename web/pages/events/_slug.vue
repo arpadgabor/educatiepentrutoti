@@ -91,7 +91,7 @@ export default {
           </div>
         </div>
       </section>
-      <section v-html="$md.render(event.description)" id="html-content"  class="mb-8"></section>
+      <section v-html="$md.render(event.description)" class="html-content mb-8"></section>
       <section class="w-full mb-8" v-if="isInFuture">
         <event-form :eventId="event.id" :eventSlug="event.slug" />
       </section>
