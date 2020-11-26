@@ -2,11 +2,11 @@
   <!-- eslint-disable prettier/prettier -->
   <section class="w-full mx-auto flex flex-col justify-start pt-16 z-10">
     <div>
-      <nuxt-link to="/events?utm_source=website&utm_medium=eyebrow&utm_campaign=general" class="mb-4 flex">
+      <a href="https://galerie.educatiepentrutoti.ro/?utm_source=ept_hero&utm_medium=website&utm_campaign=galerie" class="mb-4 flex">
         <span class="py-2 px-3 bg-primary-normal text-white text-xs rounded-full">
-          Te așteptăm la evenimentele noastre! 👈
+          Vezi Galeria Incluziunii!
         </span>
-      </nuxt-link>
+      </a>
       <h1 class="motto">
         <span class="text-secondary-normal">
           accesibilitatea
