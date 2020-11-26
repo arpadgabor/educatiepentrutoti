@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col sm:flex-row items-center">
+  <div class="flex flex-col sm:flex-row items-center p-4 sm:p-0">
     <span
       v-for="item of navItems"
       :key="item.id"
@@ -24,6 +24,15 @@ export default {
       >
         {{ item.text }}
       </nuxt-link>
+    </span>
+    <span class="h-full">
+      <a
+        href="https://galerie.educatiepentrutoti.ro/?utm_source=ept_menu&utm_medium=website&utm_campaign=galerie"
+        class="menu-item h-full w-full sm:w-auto p-3 bg-primary-normal text-white rounded"
+        exact-active-class="menu-item-active"
+      >
+        Galeria Incluziunii
+      </a>
     </span>
   </div>
 </template>

@@ -30,23 +30,11 @@ export default {
   ],
 
 
-  oneSignal: {
-    init: {
-      appId: process.env.ONESIGNAL_ID,
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-        disable: true
-      }
-    }
-  },
-
-
   modules: [
     'cookie-universal-nuxt',
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
     '@nuxt/http',
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 400 }]
@@ -56,7 +44,7 @@ export default {
     ['@nuxtjs/google-analytics', { id: 'UA-42555408-5' }],
   ],
 
-  loading: false,
+  loading: true,
   http: {
     proxy: true,
     prefix: '/api'
