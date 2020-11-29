@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
   head: {
     title: 'Acasă',
     titleTemplate: '%s | Educație pentru Toți',
@@ -62,6 +61,7 @@ export default {
 
   markdownit: {
     injected: true,
+    html: true,
     linkify: false,
     typographer: true
   },
